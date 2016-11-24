@@ -13,19 +13,23 @@ void numPatronRepetido(string cadena, string patron);
 
 int main(int argc, const char * argv[]) {
     string line;
-    cout << "Introduce cadeta de texto: " << endl;
-    getline(cin, line);
-    cout << "Introduce patrón: " << endl;
-    string pattern;
-    getline(cin, pattern);
-    numPatronRepetido(line, pattern);
+    while (getline(cin, line))
+    {
+        //    cout << "Introduce cadeta de texto: " << endl;
+//        getline(cin, line);
+        //    cout << "Introduce patrón: " << endl;
+        string pattern;
+        getline(cin, pattern);
+        numPatronRepetido(line, pattern);
+    }
     return 0;
 }
 
 void numPatronRepetido(string cadena, string patron) {
     int contador = 0;
     string acumulador;
-
+    
+    
     for (int i = 0; i < cadena.length(); i++) {
         if (i < cadena.length()) {
             acumulador += cadena[i];
