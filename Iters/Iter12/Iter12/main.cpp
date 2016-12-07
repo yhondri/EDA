@@ -28,10 +28,9 @@ int main(int argc, const char * argv[]) {
 void numPatronRepetido(string cadena, string patron) {
     int contador = 0;
     string acumulador;
-    
-    
-    for (int i = 0; i < cadena.length(); i++) {
-        if (i < cadena.length()) {
+
+    for (int i = 0; i < (int)cadena.length(); i++) {
+        if (i < (int)cadena.length()) {
             acumulador += cadena[i];
         }
         
