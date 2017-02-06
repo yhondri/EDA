@@ -10,42 +10,46 @@
 using namespace std;
 
 int ingresos(int v[], int n);
-int ingresos(int v[], int n, int i, int p);
+int ingresosFinal(int v[], int n, int index, int coste, int acumulador);
+int ingresosNoFinal(int v[], int n, int index, int coste);
 
-int main(int argc, const char * argv[]) {
+int main()
+{
     int numCasos = 0;
-//    cout << "Introduce número de casos" << endl;
     cin >> numCasos;
-    int i = 0;
-    
-    while (i < numCasos) {
-//        cout << "Introduce tamaño del array" << endl;
-        int n;
+    while (numCasos > 0) {
+        int n = 0;
         cin >> n;
-        int v[n];
-        
-//        cout << "Introduce valores del array" << endl;
+        int* v = new int[n];
         for (int i = 0; i < n; i++) {
             cin >> v[i];
         }
         cout << ingresos(v, n) << endl;
-        i++;
+        numCasos--;
     }
     return 0;
 }
 
-
 int ingresos(int v[], int n) {
-    return ingresos(v, n, 0, 1);
+    return ingresosNoFinal(v, n, 0, 1);
 }
 
-int ingresos(int v[], int n, int i, int p){
-    int suma = 0;
+int ingresosFinal(int v[], int n, int index, int coste, int acumulador) {
+    if (index == (n/2) - 1){
+        return (v[index] * coste) + (v[(n - 1) - index] * coste) + acumulador;
+    }
+    else {
+        int result = (v[index] * coste) + (v[(n - 1) - index] * coste) + acumulador;
+        return ingresosFinal(v, n, index + 1, 2 * coste, result);
+    }
+}
 
-    if (i <= (n/2) - 1) {
-        suma = v[i]*p + v[(n-1)-i]*p + ingresos(v, n, i+1, 2*p);
+int ingresosNoFinal(int v[], int n, int index, int coste) {
+    int resultado = 0;
+    
+    if (index <  (n / 2) - 1) {
+        resultado = ingresosNoFinal(v, n, index + 1, 2 * coste);
     }
     
-    
-    return suma;
+    return resultado + (v[index] * coste) + (v[(n - 1) - index] * coste);
 }
