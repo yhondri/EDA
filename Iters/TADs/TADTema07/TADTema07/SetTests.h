@@ -2,6 +2,7 @@
 #define SETTESTS_H_
 
 void testCompareSet1();
+void testLessThanSet3();
 
 void testSetOfInts();
 void testGenericSet();

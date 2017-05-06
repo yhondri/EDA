@@ -74,6 +74,37 @@ ostream& operator<<(ostream& sOut, SetOfInts3& set) {
 	return sOut;
 }
 
+bool SetOfInts3::operator<(const SetOfInts3& set) {
+    if (this->size > set.size) {
+        return false;
+    }
+    
+    bool result = true;
+    int n = (this->size -  1);
+    while (n >= 0 && result) {
+        if (!set.contains(this->elems[n])) {
+            result = false;
+        }
+        n--;
+    }
+    
+    return result;
+}
+
+int SetOfInts3::getMax() {
+    if (isEmpty()){
+        throw Error("Cannot remove");
+    }
+    return elems[size-1];
+}
+
+void SetOfInts3::removeMax() {
+    this->size--;
+}
+
+int SetOfInts3::getSize() const {
+    return size;
+}
 
 // Private methods
 
