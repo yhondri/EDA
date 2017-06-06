@@ -57,6 +57,7 @@
 		5627272B1EBDE1D9001023CE /* SetOfInts3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOfInts3.h; sourceTree = "<group>"; };
 		5627272C1EBDE1D9001023CE /* SetTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetTests.cpp; sourceTree = "<group>"; };
 		5627272D1EBDE1D9001023CE /* SetTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTests.h; sourceTree = "<group>"; };
+		564F88E91EE7211B00946AA7 /* ProbTema07-01.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "ProbTema07-01.pdf"; path = "Enunciados/Ejercicio Evaluación Continua/ProbTema07-01.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +113,17 @@
 				5627272B1EBDE1D9001023CE /* SetOfInts3.h */,
 				5627272C1EBDE1D9001023CE /* SetTests.cpp */,
 				5627272D1EBDE1D9001023CE /* SetTests.h */,
+				564F88E81EE7210700946AA7 /* Enunciados */,
 			);
 			path = TADTema07;
+			sourceTree = "<group>";
+		};
+		564F88E81EE7210700946AA7 /* Enunciados */ = {
+			isa = PBXGroup;
+			children = (
+				564F88E91EE7211B00946AA7 /* ProbTema07-01.pdf */,
+			);
+			name = Enunciados;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +323,7 @@
 				562727171EBDE1BD001023CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

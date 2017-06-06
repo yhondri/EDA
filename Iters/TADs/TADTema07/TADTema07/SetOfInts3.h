@@ -6,7 +6,7 @@
 class SetOfInts3 {
     // Conjuntos de enteros representados como vectores ordenados sin repeticiones
 private:
-    static const int MAXSIZE = 5;
+    static const int MAXSIZE = 50;
     
     int elems[MAXSIZE];
     int size;

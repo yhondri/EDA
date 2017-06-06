@@ -27,18 +27,19 @@ int main(int argc, const char * argv[]) {
     //testDate3();
     //testDate4();
     
+    /** Ejercicios de: ProbTema07-01.pdf */
     //testCompareSet1();
     //testLessThanSet3();
-    ejercicio3Tema7();
+    //ejercicio3Tema7();
 
     return 0;
 }
 
 void ejercicio3Tema7() {
-    SetOfInts3 setOfInts = SetOfInts3();
     int numbOfMins;
     cin >> numbOfMins;
     while (numbOfMins != 0) {
+        SetOfInts3 setOfInts = SetOfInts3();
         fillSetOfInts(setOfInts);
         getMins(numbOfMins, setOfInts);
         cout << setOfInts << endl;
