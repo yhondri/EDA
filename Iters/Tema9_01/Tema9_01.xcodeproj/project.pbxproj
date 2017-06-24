@@ -29,6 +29,7 @@
 		562AFB351EFE845E002B0E3F /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
 		562AFB361EFE845E002B0E3F /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 		562AFB371EFE8506002B0E3F /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		562AFB381EFEEB51002B0E3F /* prob-Tema09-08.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-Tema09-08.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,7 @@
 				562AFB351EFE845E002B0E3F /* Exceptions.h */,
 				562AFB361EFE845E002B0E3F /* List.h */,
 				562AFB371EFE8506002B0E3F /* Queue.h */,
+				562AFB381EFEEB51002B0E3F /* prob-Tema09-08.pdf */,
 			);
 			path = Tema9_01;
 			sourceTree = "<group>";
@@ -257,6 +259,7 @@
 				562AFB331EFE8421002B0E3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
