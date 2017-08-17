@@ -209,7 +209,7 @@ public:
     int altura() {
         int altura = 0;
         if (_ra != NULL) {
-            altura = alturaAux(0, _ra);
+            altura = alturaAux(_ra);
         }
         return altura;
     }
@@ -318,14 +318,14 @@ private:
         }
     }
     
-    int alturaAux(int altura, Nodo *ra) {
+    int alturaAux(Nodo *ra) {
         if (ra == NULL) {
             return 0;
         }else if (ra->_iz == NULL && ra->_dr == NULL) {
-            return 1 + altura;
+            return 1;
         }else {
-            int alturaIz = alturaAux(altura, ra->_iz);
-            int alturaDr = alturaAux(altura, ra->_dr);
+            int alturaIz = alturaAux(ra->_iz);
+            int alturaDr = alturaAux(ra->_dr);
             if (alturaIz >= alturaDr) {
                 return alturaIz + 1;
             }else {
