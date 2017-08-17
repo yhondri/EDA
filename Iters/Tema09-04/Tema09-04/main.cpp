@@ -14,7 +14,7 @@ using namespace std;
 template <class T>
 void showInfo(Arbin<T> arbin, int &numNodos, int &numHojas, int &altura);
 template <class T>
-void showInfoAux(Arbin<T> &arbin, int &numNodos, int &numHojas, int &altura);
+void showInfoAux(const Arbin<T> &arbin, int &numNodos, int &numHojas, int &altura);
 
 template <class T>
 Arbin<T> leerArbol(const T& repVacio){
@@ -37,9 +37,9 @@ int main(int argc, const char * argv[]) {
     while (numCasos > 0) {
         Arbin<char> arbol = leerArbol('.');
         cout << "Num Nodos " << arbol.numNodos() << " Num Hojas " << arbol.numHojas() << " Altura " << arbol.altura() << endl;
-        int numNodos;
-        int numHojas;
-        int altura;
+        int numNodos = 0;
+        int numHojas = 0;
+        int altura = 0;
         showInfoAux(arbol, numNodos, numHojas, altura);
         cout << "Num Nodos " << numNodos << " Num Hojas " << numHojas << " Altura " << altura << endl;
         numCasos--;
@@ -49,30 +49,26 @@ int main(int argc, const char * argv[]) {
 }
 
 template <class T>
-void showInfo(Arbin<T> arbin, int &numNodos, int &numHojas, int &altura) {
-//    showInfo(<#Arbin<T> arbin#>, <#int &numNodos#>, <#int &numHojas#>, <#int &altura#>)
-}
-
-template <class T>
-void showInfoAux(Arbin<T> &arbin, int &numNodos, int &numHojas, int &altura) {
-    if (arbin == NULL) {
-        numNodos = 0;
-        numHojas = 0;
-        altura = 0;
-    }else if (arbin.hijoIz() == NULL && arbin.hijoIz() == NULL) {
-        numNodos += 1;
+void showInfoAux(const Arbin<T> &arbin, int &numNodos, int &numHojas, int &altura) {
+    if (arbin.esVacio()) {
+        return;
+    }
+    
+    numNodos += 1;
+    if (arbin.hijoIz().esVacio() && arbin.hijoDr().esVacio()) {
         numHojas += 1;
         altura += 1;
-    }else {
-        showInfo(arbin.hijoIz(), numNodos, numHojas, altura);
-        int alturaTemp = altura;
-        showInfo(arbin.hijoDr(), numNodos += numNodos, numHojas += numHojas, altura);
-        if (alturaTemp >= altura) {
-            altura = alturaTemp + 1;
-        }else {
-            altura += + 1;
-        }
-        numNodos += 1;
+        return;
     }
-
+    
+    int alturaIz = 0, alturaDr = 0;
+    showInfoAux(arbin.hijoIz(), numNodos, numHojas, alturaIz);
+    showInfoAux(arbin.hijoDr(), numNodos, numHojas, alturaDr);
+    
+    if (alturaIz > alturaDr) {
+        altura = alturaIz + 1;
+    }
+    else {
+        altura = alturaDr + 1;
+    }
 }
