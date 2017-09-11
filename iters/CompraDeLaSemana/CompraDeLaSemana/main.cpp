@@ -10,10 +10,11 @@
 using namespace std;
 
 void showData(int** productos, int filas, int columnas);
-void hacerCompra(int** productos, int numSupermercados, int numProductos, int* productosCompradosPorSupermercado, int &nivel, int &totalAcumulado, int &solucionActual);
-void hacerCompra(int** productos, int numSupermercados, int numProductos);
-bool esValida(int* productosCompradosPorSupermercado, int nivel);
-bool esSolucion(int producto, int numProductos);
+void hacerCompra(int** productos, int filas, int columnas, int* productosCompradosPorSupermercado, int nivel, int* solucion, int &mejorSolucion);
+int hacerCompra(int** productos, int filas, int columnas);
+bool esValida(int* productosCompradosPorSupermercado, int supermercado);
+bool esSolucion(int producto, int columnas);
+int cestaActual(int* solucion, int n);
 
 int main(int argc, const char * argv[]) {
     
@@ -22,61 +23,70 @@ int main(int argc, const char * argv[]) {
     
     while (numCasos > 0) {
         
-        int numSupermercados, numProductos;
-        cin >> numSupermercados;
-        cin >> numProductos;
+        int filas, columnas;
+        cin >> filas;
+        cin >> columnas;
         
-        int** productos = new int*[numSupermercados];
-        for (int i = 0; i < numSupermercados; i++) {
-            productos[i] = new int[numProductos];
+        int** productos = new int*[filas];
+        for (int i = 0; i < filas; i++) {
+            productos[i] = new int[columnas];
         }
-        for (int i = 0; i < numSupermercados; i++) {
-            for (int j = 0; j < numProductos; j++) {
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
                 cin >> productos[i][j];
             }
         }
-//        showData(productos, numSupermercados, numProductos);
-        hacerCompra(productos, numSupermercados, numProductos);
+        //        showData(productos, filas, columnas);
+        int mejorSolucion = hacerCompra(productos, filas, columnas);
+        cout << "Total: " << mejorSolucion << endl;
         numCasos--;
     }
     
     return 0;
 }
 
-void hacerCompra(int** productos, int numSupermercados, int numProductos) {
-    int nivel, totalAcumulado, solucionActual;
-    hacerCompra(productos, numSupermercados, numProductos, new int[numSupermercados], nivel, totalAcumulado, solucionActual);
+int hacerCompra(int** productos, int filas, int columnas) {
+    int solucionActual = INT_MAX;
+    
+     hacerCompra(productos, filas, columnas, new int[filas], 0, new int[columnas], solucionActual);
+    return 0;
 }
 
-
-
-void hacerCompra(int** productos, int numSupermercados, int numProductos, int* productosCompradosPorSupermercado, int &nivel, int &totalAcumulado, int &solucionActual) {
-    for (int i = 0; i < numProductos; i++) {
-        productosCompradosPorSupermercado[nivel] += 1;
-        if (esValida(productosCompradosPorSupermercado, nivel)) {
-            productosCompradosPorSupermercado[nivel] += 1;
-            totalAcumulado += productos[nivel][i];
-            if (esSolucion(i, numProductos)) {
-                if (solucionActual == 0 || totalAcumulado < solucionActual) {
-                    solucionActual = totalAcumulado;
+void hacerCompra(int** productos, int filas, int columnas, int* productosCompradosPorSupermercado, int nivel, int* solucion, int &mejorSolucion) {
+    for (int i = 0; i < filas; i++) {
+        if (esValida(productosCompradosPorSupermercado, i)) {
+            productosCompradosPorSupermercado[i]++;
+            solucion[nivel] = productos[i][nivel];
+            if (esSolucion(nivel, columnas)) {
+                int solucionActual = cestaActual(solucion, columnas);
+                if (solucionActual < mejorSolucion) {
+                    mejorSolucion = solucionActual;
                 }
             }else {
-                cout << "Bajo al siguiente súper " << productos[nivel][i] << endl;
-                hacerCompra(productos, numSupermercados, numProductos, productosCompradosPorSupermercado, nivel, totalAcumulado, solucionActual);
+                hacerCompra(productos, filas, columnas, productosCompradosPorSupermercado, (nivel + 1), solucion, mejorSolucion);
             }
+            productosCompradosPorSupermercado[i]--;
+            solucion[nivel] -= productos[i][nivel];
         }
     }
-    cout << "Total: " << solucionActual << endl;
+    cout << mejorSolucion << endl;
 }
 
-bool esValida(int* productosCompradosPorSupermercado, int nivel) {
-    return productosCompradosPorSupermercado[nivel] <= 3;
+bool esValida(int* productosCompradosPorSupermercado, int supermercado) {
+    return productosCompradosPorSupermercado[supermercado] < 3;
 }
 
-bool esSolucion(int producto, int numProductos) {
-    return producto == numProductos;
+bool esSolucion(int producto, int columnas) {
+    return producto == (columnas - 1);
 }
 
+int cestaActual(int* solucion, int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += solucion[i];
+    }
+    return total;
+}
 
 void showData(int** productos, int filas, int columnas) {
     cout << endl << endl;
@@ -86,14 +96,17 @@ void showData(int** productos, int filas, int columnas) {
         }
         cout << endl;
     }
-   /** 
-    1
-    6 10
-    1820 510 370 1000 460 324 505 640 2030 409
-    2000 430 450 1110 606 290 530 670 2104 501
-    1760 502 395 1200 550 199 525 702 1830 550 
-    2130 640 560 1307 735 450 600 720 2150 575 
-    1143 455 505 1140 500 400 350 550 2030 399 
-    1200 475 403 1002 560 350 502 640 2009 460*/
+    /**
+     
+     1
+     6 10
+     1820 510 370 1000 460 324 505 640 2030 409
+     2000 430 450 1110 606 290 530 670 2104 501
+     1760 502 395 1200 550 199 525 702 1830 550
+     2130 640 560 1307 735 450 600 720 2150 575
+     1143 455 505 1140 500 400 350 550 2030 399
+     1200 475 403 1002 560 350 502 640 2009 460
+     
+     */
 }
 
