@@ -25,8 +25,10 @@
 /* Begin PBXFileReference section */
 		560F70931F66E2D100659C81 /* SmartTV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SmartTV; sourceTree = BUILT_PRODUCTS_DIR; };
 		560F70961F66E2D100659C81 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		560F709D1F66E33200659C81 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = List.h; path = "../../TADs Tema 9/List.h"; sourceTree = "<group>"; };
-		560F709F1F66E34100659C81 /* Exceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = "../../TADs Tema 9/Exceptions.h"; sourceTree = "<group>"; };
+		560F709D1F66E33200659C81 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		560F709F1F66E34100659C81 /* Exceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
+		561662B31F66F56A0009E169 /* SmartTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmartTV.h; sourceTree = "<group>"; };
+		561662B41F66F67B0009E169 /* TreeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeMap.h; path = "../../../TADs Tema 10/TreeMap.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +62,20 @@
 			isa = PBXGroup;
 			children = (
 				560F70961F66E2D100659C81 /* main.cpp */,
+				561662B31F66F56A0009E169 /* SmartTV.h */,
+				561662B21F66F5270009E169 /* TADs */,
+			);
+			path = SmartTV;
+			sourceTree = "<group>";
+		};
+		561662B21F66F5270009E169 /* TADs */ = {
+			isa = PBXGroup;
+			children = (
+				561662B41F66F67B0009E169 /* TreeMap.h */,
 				560F709D1F66E33200659C81 /* List.h */,
 				560F709F1F66E34100659C81 /* Exceptions.h */,
 			);
-			path = SmartTV;
+			path = TADs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

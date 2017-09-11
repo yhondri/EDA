@@ -8,10 +8,12 @@
 
 #include <iostream>
 #include "List.h"
+#include "SmartTV.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    cout << "Main " << endl;
     /* Tests
      programar concierto 5 23:55 60
      grabacionesProgramadas 4 6
