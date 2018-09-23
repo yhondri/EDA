@@ -26,6 +26,7 @@
 		56BF87072157C24C00675744 /* aer_242 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aer_242; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BF870A2157C24C00675744 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		56BF87112157C25E00675744 /* casos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
+		56BF87122157E0FF00675744 /* problem-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "problem-3.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		56BF87092157C24C00675744 /* aer_242 */ = {
 			isa = PBXGroup;
 			children = (
+				56BF87122157E0FF00675744 /* problem-3.pdf */,
 				56BF87112157C25E00675744 /* casos */,
 				56BF870A2157C24C00675744 /* main.cpp */,
 			);
