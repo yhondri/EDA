@@ -14,11 +14,11 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     //     ajustes para que cin extraiga directamente de un fichero
-//#ifndef DOMJUDGE
-////        ifstream in("/Users/yhondri/Documents/University/eda/2_3/aer_117/aer_117/casos"); //MacBook Pro;
-//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/aer_221/aer_221/casos");  //Mac Mini;
-//    auto cinbuf = cin.rdbuf(in.rdbuf());
-//#endif
+#ifndef DOMJUDGE
+//        ifstream in("/Users/yhondri/Documents/University/eda/2_3/aer_117/aer_117/casos"); //MacBook Pro;
+    ifstream in("/Users/admin/Documents/universidad/eda/2_3/aer_221/aer_221/casos");  //Mac Mini;
+    auto cinbuf = cin.rdbuf(in.rdbuf());
+#endif
 //
     int numCasos;
     cin >> numCasos;
@@ -55,10 +55,10 @@ int main(int argc, const char * argv[]) {
     }
     
     // para dejar todo como estaba al principio
-//#ifndef DOMJUDGE
-//    cin.rdbuf(cinbuf);
-//    //    system("PAUSE");
-//#endif
+#ifndef DOMJUDGE
+    cin.rdbuf(cinbuf);
+    //    system("PAUSE");
+#endif
     
     return 0;
 }
