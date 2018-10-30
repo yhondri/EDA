@@ -17,11 +17,13 @@ void resolverCaso(vector<int> datos, int numDatos);
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
-//#ifndef DOMJUDGE
-//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez10/juez10/casos");
-//    auto cinbuf = cin.rdbuf(in.rdbuf());
-//#endif
-    
+//    #ifndef DOMJUDGE
+////        ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez10/juez10/casos");
+//
+//    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/juez/juez10/juez10/casos");
+//        auto cinbuf = cin.rdbuf(in.rdbuf());
+//    #endif
+//    
     int numDatos;
     
     while (cin >> numDatos) {
@@ -32,11 +34,11 @@ int main(int argc, const char * argv[]) {
     }
     
     
-//#ifndef DOMJUDGE
-//    cin.rdbuf(cinbuf);
-//    //    system("PAUSE");
-//#endif
-    
+//    #ifndef DOMJUDGE
+//        cin.rdbuf(cinbuf);
+//        //    system("PAUSE");
+//    #endif
+
     return 0;
 }
 
@@ -49,74 +51,33 @@ void leerDatos(vector<int> &datos, int numDatos) {
 }
 
 void resolverCaso(vector<int> datos, int numDatos) {
-    int inicioMayorRachaGoleadora = -1, finalMayorRachaGoleadora = -1, finalRachaActual = numDatos - 1, numRepeticionesRachaGoleadora = 0;
+    int rachaPartidosGanados = 0, mayorRachaGanados = 0,  numRepeticionesRachaGoleadora = 0, partidosDesdeLaUltimaRacha = 0;
     
-    for (int i = numDatos - 1; i >= 0; i--) {
-        if (datos[i] <= 0) {
-            if (finalRachaActual != i) {
-                int diff = (finalRachaActual - i) - (finalMayorRachaGoleadora - inicioMayorRachaGoleadora);
-                if (diff == 0) {
-                    numRepeticionesRachaGoleadora++;
-                } else if (diff > 0) {
-                    inicioMayorRachaGoleadora = i;
-                    finalMayorRachaGoleadora = finalRachaActual;
-                    numRepeticionesRachaGoleadora = 1;
-                }
+    for (int i = 0; i < numDatos; i++) {
+        if (datos[i] > 0) {
+            rachaPartidosGanados++;
+
+            if (mayorRachaGanados < rachaPartidosGanados) {
+                mayorRachaGanados = rachaPartidosGanados;
+                numRepeticionesRachaGoleadora = 1;
+                partidosDesdeLaUltimaRacha = i;
+            } else if(mayorRachaGanados > 0 && mayorRachaGanados == rachaPartidosGanados) {
+                numRepeticionesRachaGoleadora++;
+                partidosDesdeLaUltimaRacha = i;
             }
-            
-            finalRachaActual = i - 1;
+        } else {
+            rachaPartidosGanados = 0;
         }
     }
-    
-    int diff = (finalRachaActual + 1) - (finalMayorRachaGoleadora - inicioMayorRachaGoleadora);
-    if (diff == 0) {
-        numRepeticionesRachaGoleadora++;
-    } else if (diff > 0) {
-        inicioMayorRachaGoleadora = -1;
-        finalMayorRachaGoleadora = finalRachaActual;
-        numRepeticionesRachaGoleadora = 1;
+
+
+    int ultimaRacha;
+
+    if (mayorRachaGanados > 0) {
+        ultimaRacha = numDatos - partidosDesdeLaUltimaRacha - 1;
+    } else {
+        ultimaRacha = numDatos;
     }
-    
-    cout << (finalMayorRachaGoleadora - inicioMayorRachaGoleadora) << " " << numRepeticionesRachaGoleadora << " " << (numDatos - finalMayorRachaGoleadora - 1) << endl;
+
+    cout << mayorRachaGanados << " " << numRepeticionesRachaGoleadora << " " << ultimaRacha << endl;
 }
-
-
-//void resolverCaso(vector<int> datos, int numDatos) {
-//    int mayorRachaGoleadora = 0, rachaGoleadoraActual = 0, numRepeticionesRachaGoleadora = 0, partidosDesdeLaUltimaRacha = 0;
-//
-//    for (int i = 0; i < numDatos; i++) {
-//        if (datos[i] > 0) {
-//            rachaGoleadoraActual++;
-//        } else {
-//            if (rachaGoleadoraActual > 0 && rachaGoleadoraActual == mayorRachaGoleadora) {
-//                numRepeticionesRachaGoleadora++;
-//            }
-//
-//            if (rachaGoleadoraActual >= mayorRachaGoleadora) {
-//                mayorRachaGoleadora = rachaGoleadoraActual;
-//                numRepeticionesRachaGoleadora = 1;
-//                partidosDesdeLaUltimaRacha = i;
-//            }
-//
-//            rachaGoleadoraActual = 0;
-//        }
-//    }
-//
-//    if (datos[numDatos-1] > 0) {
-//        if (rachaGoleadoraActual > 0 && rachaGoleadoraActual == mayorRachaGoleadora) {
-//            numRepeticionesRachaGoleadora++;
-//        }
-//
-//        if (rachaGoleadoraActual >= mayorRachaGoleadora) {
-//            mayorRachaGoleadora = rachaGoleadoraActual;
-//            numRepeticionesRachaGoleadora = 1;
-//            partidosDesdeLaUltimaRacha = numDatos;
-//        }
-//
-//
-//        rachaGoleadoraActual = 0;
-//    }
-//
-//    cout << mayorRachaGoleadora << " " << numRepeticionesRachaGoleadora << " " << (numDatos - partidosDesdeLaUltimaRacha) << endl;
-//
-//}
