@@ -21,10 +21,10 @@ void resolverProblema(vector<int> datos, int numDatos, int minValorLlano);
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
-//#ifndef DOMJUDGE
-//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez11/juez11/casos");
-//    auto cinbuf = cin.rdbuf(in.rdbuf());
-//#endif
+#ifndef DOMJUDGE
+    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez11/juez11/casos");
+    auto cinbuf = cin.rdbuf(in.rdbuf());
+#endif
     
     int numDatos, minValorLlano;
     while (cin >> numDatos && cin >> minValorLlano) {
@@ -34,10 +34,10 @@ int main(int argc, const char * argv[]) {
         resolverProblema(datos, numDatos, minValorLlano);
     }
     
-//#ifndef DOMJUDGE
-//    cin.rdbuf(cinbuf);
-//    //    system("PAUSE");
-//#endif
+#ifndef DOMJUDGE
+    cin.rdbuf(cinbuf);
+    //    system("PAUSE");
+#endif
     
     return 0;
 }
