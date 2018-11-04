@@ -6,6 +6,39 @@
 //  Copyright © 2018 Yhondri . All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+
+//predicate EstricCreciente (s : seq <int >)
+//ensures EstricCreciente(s) == forall u , w :: 0 <= u < w < |s| ==> s[u] < s[w]
+//
+//method Problema02(v : array<int>) requires v != null
+//requires forall k :: 0 <= k < v.Length ==> v[k] > 0 requires EstricCreciente(v[..])
+//ensures forall i::0<=i<old(v.Length) && old(v[i])%2 == 0 ==> old(v[i]) in v[..] ensures 0 <= v.Length <= old(v.Length)
+//ensures forall i :: 0 <= i < v.Length ==> v[i] in old(v[..])
+//ensures EstricCreciente(v[..])
+//modifies v
+
+// -------------
+//| Invariante |
+// -------------
+//1 <= i <= v.size() &&
+//I = { 0 <= i <= v.size() && 0 <= z <= i && (forall w: 0 <= 2 < j : v[w] > 0 && v[w] %2 == 0}
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// Coste es O(n) donde n es el número de elementos del array,  ya que cada vuelta que damos al bucle es constante y el bucle se repite n veces. 
+
 #include <iostream>
 #include <fstream>
 #include <vector>

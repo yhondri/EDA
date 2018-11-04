@@ -6,6 +6,28 @@
 //  Copyright © 2018 Yhondri . All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+
+//P = {0 >= v.Length <= 1000 && d > 0}
+//fun resolverCaso(vector<int> datos, int numDatos, int numMaxRepeticiones;
+//Q = {paraTodo z : 0 <=  z < v.length : v[z-1] < v[z] && (v[z-1] - v[z]) <= 1 && #v[z] < d}
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero 1 vez para poder calcular el número de repeticiones y ver si se cumple la condición que la diferencia entre todos los elementos seguidos es 1 y el orden es creciente. 
+
 #include <iostream>
 #include <fstream>
 #include <vector>

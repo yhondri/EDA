@@ -6,6 +6,36 @@
 //  Copyright © 2018 Yhondri . All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+
+//P = {0 < v.Length}
+//fun problema4(vector<int> datos, int numDatos, int alturaTransporte) : (inicioIntervalo: Int, finIntervalo: Int);
+//Q = {numPicos = #i: 1 <= i < v.length-1 : v[i-1] < v[i] && v[i] > v[i+1]}
+//{numValles = #i: 1 <= i < v.length-1 : v[i-1] > v[i] && v[i] < v[i+1]}
+
+// -------------
+//| Invariante |
+// -------------
+// 1 <= i <= v.length &&
+// {Existe w, q = w <= q <= i < v.length-1 : v[w] >= alturaTransporte && v[q] >= alturaTransporte} &&
+// intervaloMaximaLongitud = #max: (w - q)
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero 1 vez para poder calcular el intervalo mayor que cumpla la condición.
+
 #include <iostream>
 #include <fstream>
 #include <vector>

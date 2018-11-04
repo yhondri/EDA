@@ -6,6 +6,30 @@
 //  Copyright © 2018 Yhondri . All rights reserved.
 //
 
+
+// -----------------
+//| Especificación |
+// -----------------
+
+//P = {0 >= v.size()}
+//void resolverCaso(vector<int> datos, int numDatos);
+//Q = {numPicos = #i: 1 <= i < v.length-1 : v[i-1] < v[i] && v[i] > v[i+1]}
+//{numValles = #i: 1 <= i < v.length-1 : v[i-1] > v[i] && v[i] < v[i+1]}
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero 1 vez para poder calcular el total de picos y valles.
+
 #include <iostream>
 #include <fstream>
 #include <vector>
