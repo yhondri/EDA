@@ -6,6 +6,38 @@
 //  Copyright © 2018 yhondri. All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+
+// P = {0 < v.Length <= 100000
+// fun colones(v: array<int>, int n) returns(totalColones: bool);
+// Q = {colones = #i: 1 <= i < v.length-1 : v[i] < v[i-1] || min < v[i-1]}
+// {min = #i: 1 <= i < v.length-1 : min < v[i]}
+
+// -------------
+//| Invariante |
+// -------------
+// 1 <= i <= v.length &&
+// colones = #z: 1 <= z < i : v[z] < v[z-1] || min < v[z-1] &&
+// min = #i: 1 <= z < i < v.length-1 : min < v[z]
+
+// -------
+//| Cota |
+// -------
+// La cota es v.length - i.
+// Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero 1 vez para poder calcular el número total de colones.
+
+
+
 #include <iostream>
 #include <fstream>
 using namespace std;

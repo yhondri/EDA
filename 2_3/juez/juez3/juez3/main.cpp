@@ -6,6 +6,36 @@
 //  Copyright © 2018 Yhondri . All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+//
+
+//P = {v != null && 0 <= p < v.Length}
+//problema3 (a : array<int>, p : int) returns (b : bool);
+//Q = {b == forall u, w :: 0 <= u <= p < w < a.Length ==> a[u] < a[w]}
+
+// -------------
+//| Invariante |
+// -------------
+//1 <= i <= v.length &&
+// b == forall u, w :: 0 <= u <= p < w < a.Length ==> v[u] < a[w] &&
+//maximoDeU = Existe z: 1 <= z < p < i: v[z-1] < v[z]
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero en el caso peor al menos 1 vez para poder ver si todos los elementos del array a partir de la posición p  son mayores que todos los anteriores a la posición p.
+
 #include <iostream>
 #include <fstream>
 #include <vector>

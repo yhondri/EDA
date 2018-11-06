@@ -6,6 +6,39 @@
 //  Copyright © 2018 yhondri. All rights reserved.
 //
 
+// -----------------
+//| Especificación |
+// -----------------
+
+// requires v!= null
+//void resuelveCaso()
+//ensures -1 <= p < v.Length
+//ensures numUnos(v[..p+1]) == numCeros(v[..p+1])
+//ensures forall k :: p < k < v.Length ==> numUnos(v[..k+1]) != numCeros(v[..k+1])
+
+// -------------
+//| Invariante |
+// -------------
+//1 <= i <= v.length &&
+// cero = #k 0 <= k < i : v[k] = 0
+// uno = #k 0 <= k < i : v[k] = 1
+// numCero(v, 0, p+1) = numUno(v, 0, p+1)
+//paraTodo z : p < z < i ==> numCero(v, 0, z+1) != numUno(v, 0, z+1)
+
+// -------
+//| Cota |
+// -------
+//La cota es v.length - i.
+//Siendo B la condición del bucle:
+// * Es mayor o igual que cero cuando B se cumple: I && B => 0.
+// * Decrece al ejecutarse el bucle.
+
+// -------
+//| Coste |
+// -------
+// El coste del algoritmo es O(n), siendo n el tamaño del array (número de elementos), ya que tenemos que recorrer el array
+// entero 1 vez para poder calcular el total 0 y 1s.
+
 #include <iostream>
 #include <fstream>
 #include <vector>
