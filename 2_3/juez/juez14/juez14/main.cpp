@@ -17,9 +17,7 @@ void leerDatos(vector<int> &datos, int numDatos);
 int findMin(vector<int> datos, int i);
 int findMin(vector<int>datos, int indiceInicio, int indiceFinal);
 
-int findMin(vector<int> datos) {
-   return findMin(datos, 0, (int)datos.size()-1);
-}
+
 
 int findMin(vector<int>datos, int indiceInicio, int indiceFinal) {
     int index = abs(indiceInicio+indiceFinal)/2;
