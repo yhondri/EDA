@@ -59,7 +59,12 @@ int findMin(vector<int> datos, int numDatos) {
 int findMin(vector<int>datos, int indiceInicio, int indiceFinal) {
     int index = (indiceInicio+indiceFinal)/2;
 
-    if (datos[index] < datos[index-1] && datos[index] < datos[index+1]) {
+    if (index == 0) {
+        return datos[0];
+    } else if(index == (int)datos.size()-1) {
+        return datos[datos.size()-1];
+    }
+    if (index-1 >= 0 && (index+1 <= (int)datos.size()-1) && datos[index] < datos[index-1] && datos[index] < datos[index+1]) {
         return datos[index]; //si el valor en el que estamos es menor que sus contiguos, quiere decir que es el mínimo.
     } else if (datos[index] < datos[indiceFinal]) {
         return findMin(datos, index, indiceFinal); //Hacía la derecha.
