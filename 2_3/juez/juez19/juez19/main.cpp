@@ -18,18 +18,7 @@ bool estaParcialMenteOrdeando(vector<int> &datos);
 bool estaParcialMenteOrdeando(vector<int> &datos, int min, int max);
 
 bool estaParcialMenteOrdeando(vector<int> &datos) {
-    if (datos.size() == 2) {
-        if (datos[0] <= datos[1]) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        int mitad = ((int)datos.size()-1)/2;
-        bool mitadIzquierda = estaParcialMenteOrdeando(datos, 0, mitad);
-        bool mitadDerecha = estaParcialMenteOrdeando(datos, mitad+1, ((int)datos.size()-1));
-        return mitadIzquierda && mitadDerecha;
-    }
+    return estaParcialMenteOrdeando(datos, 0, ((int)datos.size()-1));
 }
 
 bool estaParcialMenteOrdeando(vector<int> &datos, int min, int max) {
@@ -41,7 +30,8 @@ bool estaParcialMenteOrdeando(vector<int> &datos, int min, int max) {
         return true;
     }
     
-    return estaParcialMenteOrdeando(datos, min+1, max-1);
+    int mitad = (min+max)/2;
+    return estaParcialMenteOrdeando(datos, 0, mitad) && estaParcialMenteOrdeando(datos, mitad+1, ((int)datos.size()-1));
 }
 
 int main(int argc, const char * argv[]) {
