@@ -18,27 +18,27 @@ bool estaParcialMenteOrdeando(vector<int> &datos);
 bool estaParcialMenteOrdeando(vector<int> &datos, int min, int max);
 
 bool estaParcialMenteOrdeando(vector<int> &datos) {
-    return estaParcialMenteOrdeando(datos, 0, ((int)datos.size()-1));
+    return estaParcialMenteOrdeando(datos, 0, (int)datos.size());
 }
 
 bool estaParcialMenteOrdeando(vector<int> &datos, int min, int max) {
-    if (datos[min] > datos[max]) {
+    if (max-min <= 2) {
+        return datos[min] <= datos[max-1];
+    }
+
+    int mitad = (min+max)/2;
+    if (datos[mitad-1] > datos[max-1] || datos[mitad] < datos[min]) {
         return false;
     }
-    
-    if (min == max-1) {
-        return true;
-    }
-    
-    int mitad = (min+max)/2;
-    return estaParcialMenteOrdeando(datos, 0, mitad) && estaParcialMenteOrdeando(datos, mitad+1, ((int)datos.size()-1));
+
+    return estaParcialMenteOrdeando(datos, min, mitad) && estaParcialMenteOrdeando(datos, mitad, max);
 }
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez19/juez19/casos");
-//    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/juez/juez19/juez19/casos");
+//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez19/juez19/casos");
+    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/juez/juez19/juez19/casos");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
 
