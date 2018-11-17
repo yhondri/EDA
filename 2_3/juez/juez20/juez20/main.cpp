@@ -55,20 +55,21 @@ void leerDatos(vector<int> &datos, int numDatos) {
 }
 
 void resolverCaso(vector<int> datos, int numDatos, int alturaSospechoso) {
-    int mitad = numDatos/2;
     int posicionMitadIzquierda = -1, posicionMitadDerecha = -1;
 
-    posicionMitadIzquierda = buscarIz(datos, alturaSospechoso, 0, mitad);
+    posicionMitadIzquierda = buscarIz(datos, alturaSospechoso, 0, numDatos-1);
     posicionMitadDerecha = buscarDr(datos, alturaSospechoso, 0, numDatos-1);
     
     if (posicionMitadIzquierda != -1) {
         cout << posicionMitadIzquierda;
     }
-    
-    if (posicionMitadDerecha != -1 && posicionMitadIzquierda != -1) {
-        cout << " " << posicionMitadDerecha;
-    } else if(posicionMitadDerecha != -1 && posicionMitadIzquierda == -1) {
-        cout << posicionMitadDerecha;
+    if (posicionMitadIzquierda != posicionMitadDerecha) {
+        
+        if (posicionMitadDerecha != -1 && posicionMitadIzquierda != -1) {
+            cout << " " << posicionMitadDerecha;
+        } else if(posicionMitadDerecha != -1 && posicionMitadIzquierda == -1) {
+            cout << posicionMitadDerecha;
+        }
     }
     
     if (posicionMitadDerecha == -1 && posicionMitadIzquierda == -1) {
