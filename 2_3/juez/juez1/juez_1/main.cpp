@@ -23,8 +23,8 @@
 //| Invariante |
 // -------------
 //1 <= i <= v.length &&
-//numPicos = #z: 1 <= z < i : v[z-1] < v[z] && v[z] > v[z+1] &&
-//numValles = #z: 1 <= z < i: v[z-1] > v[z] && v[z] < v[z+1]
+//numPicos = #z: 1 <= z < i : v[z-1] < v[z] && v[z] > v[z+1] &&  //# = contador cuántas veces se cumple la condición.
+//numValles = #z: 1 <= z < i: v[z-1] > v[z] && v[z] < v[z+1] // Muy parecido a la post condición pero hay q utilizar otra variable en vez de "i".
 
 // -------
 //| Cota |
