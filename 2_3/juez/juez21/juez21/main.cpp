@@ -15,9 +15,10 @@ using namespace std;
 void leerDatos(vector<vector<int>> &datos, int numFilas, int numColumnas);
 void mostrarDatos(vector<vector<int>> &datos, int numFilas, int numColumnas);
 bool esAproximadamenteUnDegradado(vector<vector<int>> &datos, int numFilas, int numColumnas);
-bool esAproximadamenteUnDegradado(vector<int> &datos, int min, int max);
+bool esAproximadamenteUnDegradado(vector<int> &datos, int numInicio, int numFinal, int &suma);
 vector<int> getSumColumnas(vector<vector<int>> &datos, int numFilas, int numColumnas);
 
+int esDegradado(vector<vector<int>> &datos, int numFila, int numInicio, int numFinal);
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
@@ -72,21 +73,49 @@ void mostrarDatos(vector<vector<int>> &datos, int numFilas, int numColumnas) {
 }
 
 bool esAproximadamenteUnDegradado(vector<vector<int>> &datos, int numFilas, int numColumnas) {
-    if (numFilas == 1 && numColumnas == 2) {
-        return datos[0][0] < datos[0][1];
+    bool result = true;
+    int tempSuma;
+    for (int i = 0; i < numFilas && result; i++) {
+        tempSuma = 0;
+        //            result = (esDegradado(datos, i, 0, numColumnas) >= 0);
+        result = esAproximadamenteUnDegradado(datos.at(i), 0, numColumnas-1, tempSuma);
+    }
+
+    return result;
+}
+
+int esDegradado(vector<int> &datos, int numFila, int numInicio, int numFinal) {
+    int izq, der;
+    if (numFinal-numInicio <= 2) {
+        izq = datos[numInicio];
+        der = datos[numFinal-1];
     } else {
-        bool result = true;
-        for (int i = 0; i < numFilas && result; i++) {
-//            result =
+        int mitad = (numFinal+numInicio)/2;
+        izq = esDegradado(datos, numFila, numInicio, mitad);
+        der = esDegradado(datos, numFila, mitad, numFinal);
+
+        if (izq < 0 || der < 0) {
+            return false;
         }
     }
 
-    return false;
+    if (izq < der) {
+        return izq + der;
+    } else {
+        return -1;
+    }
 }
 
-bool esAproximadamenteUnDegradado(vector<vector<int>> &datos, int numFila, int numInicio, int numFinal, int &suma) {
-
-    if (numFinal-numInicio < 2) {
-        return datos[numFila][numInicio] < datos[numFila][numFinal];
+bool esAproximadamenteUnDegradado(vector<int> &datos, int numInicio, int numFinal, int &suma) {
+    if (numFinal-numInicio <= 2) {
+        suma = datos[numInicio] + datos[numFinal];
+        return datos[numInicio] < datos[numFinal];
+    } else {
+        int mitad = (numFinal+numInicio)/2;
+        int sumaLadoIzquierdo = 0, sumaLadoDerecho = 0;
+        bool ladoIzqEsAproximadamenteUnDegradado = esAproximadamenteUnDegradado(datos, numInicio, mitad, sumaLadoIzquierdo);
+        bool ladoDrEsAproximadamenteUnDegradado = esAproximadamenteUnDegradado(datos, mitad+1, numFinal, sumaLadoDerecho);
+        suma = sumaLadoIzquierdo + sumaLadoDerecho;
+        return ladoIzqEsAproximadamenteUnDegradado && ladoDrEsAproximadamenteUnDegradado && sumaLadoIzquierdo < sumaLadoDerecho;
     }
 }
