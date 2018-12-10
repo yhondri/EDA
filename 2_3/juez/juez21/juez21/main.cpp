@@ -20,7 +20,8 @@ int esAproximadamenteUnDegradado(vector<int> &datos, int numInicio, int numFinal
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez21/juez21/casos");
+    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/juez/juez21/juez21/casos");
+//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez21/juez21/casos");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
 

@@ -13,14 +13,16 @@
 using namespace std;
 
 void leerDatos(vector<int> &datos, int numDatos);
-bool esSuficientementeDisperso(vector<int> &datos, int posInicial, int posFinal, int k);
+int esSuficientementeDisperso(vector<int> &datos, int posInicial, int posFinal, int k);
+//int esSuficientementeDisperso(vector<int> &datos, int posInicial, int posFinal, int k);
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
-#ifndef DOMJUDGE
-    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/laboratorios/LabRec02/LabRec02/casos");
-    auto cinbuf = cin.rdbuf(in.rdbuf());
-#endif
+//#ifndef DOMJUDGE
+//    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/laboratorios/LabRec02/LabRec02/casos");
+////    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/laboratorios/LabRec02/LabRec02/casos"); MINI
+//    auto cinbuf = cin.rdbuf(in.rdbuf());
+//#endif
 
     int numTiradas, valorDispersion;
 
@@ -28,9 +30,9 @@ int main(int argc, const char * argv[]) {
         vector<int> datos(numTiradas);
         leerDatos(datos, numTiradas);
 
-        bool result = esSuficientementeDisperso(datos, 0, numTiradas-1, valorDispersion);
+        int result = esSuficientementeDisperso(datos, 0, numTiradas, valorDispersion);
 
-        if (result) {
+        if (result >= 0) {
             cout << "SI";
         } else {
             cout << "NO";
@@ -40,10 +42,10 @@ int main(int argc, const char * argv[]) {
     }
 
 
-#ifndef DOMJUDGE
-    cin.rdbuf(cinbuf);
-    //    system("PAUSE");
-#endif
+//#ifndef DOMJUDGE
+//    cin.rdbuf(cinbuf);
+//    //    system("PAUSE");
+//#endif
 
     return 0;
 }
@@ -56,20 +58,20 @@ void leerDatos(vector<int> &datos, int numDatos) {
     }
 }
 
-bool esSuficientementeDisperso(vector<int> &datos, int posInicial, int posFinal, int k) {
-    int numElementos = (posFinal-posInicial);
-    int diferencia = abs(datos[posInicial] - datos[posFinal]);
+int esSuficientementeDisperso(vector<int> &datos, int posInicial, int posFinal, int k) {
+    int ladoIzquierdo, ladoDerecho;
 
-    if (diferencia >= k) {
-        if (numElementos < 2) {
-            return true;
-        } else {
-            int mitad = (posInicial+posFinal)/2;
-            //Miramos mitad derecha y mitad izquierda. 
-            return esSuficientementeDisperso(datos, posInicial, mitad, k) &&
-            esSuficientementeDisperso(datos, mitad+1, posFinal, k);
+    if (posFinal-posInicial <= 1) {
+        return datos[posInicial];
+    } else {
+        int mitad = (posFinal+posInicial)/2;
+        ladoIzquierdo = esSuficientementeDisperso(datos, posInicial, mitad, k); //Miramos lado izquierdo.
+        ladoDerecho = esSuficientementeDisperso(datos, mitad, posFinal, k); //Miramos lado derecho.
+
+        if (ladoIzquierdo < 0 || ladoDerecho < 0 || (abs(ladoIzquierdo-ladoDerecho) < k)) { //En caso de no cumplir la condición devolvemos -1, es decir, no es aproximadamenteDegradado.
+            return -1;
         }
-    }
 
-    return false;
+        return ladoIzquierdo+ladoDerecho;
+    }
 }
