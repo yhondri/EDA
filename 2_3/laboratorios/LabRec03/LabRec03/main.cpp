@@ -19,7 +19,8 @@ int encuentraMenorDiferencia(vector<int> &datos, int numInicio, int numFinal, in
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/laboratorios/LabRec03/LabRec03/casos");
+//    ifstream in("/Users/yhondri/Documents/universidad/eda/eda/2_3/laboratorios/LabRec03/LabRec03/casos");
+    ifstream in("/Users/admin/Documents/universidad/eda/2_3/laboratorios/LabRec03/LabRec03/casos");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
 
@@ -31,7 +32,7 @@ int main(int argc, const char * argv[]) {
         vector<int> datos(numElementos);
         leerDatos(datos, numElementos);
 
-        cout << encuentraMenorDiferencia(datos, 0, (int)datos.size()-1, x) << endl;
+        cout << encuentraMenorDiferencia(datos, 0, numElementos, x) << endl;
 
         numCasos--;
     }

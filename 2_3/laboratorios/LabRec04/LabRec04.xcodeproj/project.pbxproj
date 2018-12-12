@@ -26,6 +26,7 @@
 		56331F0521C19A9A00E8845B /* LabRec04 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabRec04; sourceTree = BUILT_PRODUCTS_DIR; };
 		56331F0821C19A9A00E8845B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		56331F0F21C19CC400E8845B /* casos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
+		56BD837721C1B97B00199DD5 /* prob-EJ8SC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-EJ8SC.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		56331F0721C19A9A00E8845B /* LabRec04 */ = {
 			isa = PBXGroup;
 			children = (
+				56BD837721C1B97B00199DD5 /* prob-EJ8SC.pdf */,
 				56331F0F21C19CC400E8845B /* casos */,
 				56331F0821C19A9A00E8845B /* main.cpp */,
 			);
