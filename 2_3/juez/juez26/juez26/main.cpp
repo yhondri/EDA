@@ -15,11 +15,7 @@ using namespace std;
 void leerDatos(vector<int> &datos, int numColores);
 
 void tratarSolucion(int numSoluciones) {
-    if (numSoluciones > 0) {
-        cout << numSoluciones << endl;
-    } else {
-        cout << "SIN SOLUCION" << endl;
-    }
+    cout << numSoluciones << endl;
 }
 /**
  Comprobamos que hemos colocados todas las piezas de la torre,
@@ -29,53 +25,81 @@ bool esSolucion(int k, int n) {
     return (k == (n-1));
 }
 
-bool esValida(vector<int> &piezasColocadas, vector<int> &lucesDisponibles,
-              vector<int> &solucion, int &k, int &longitudCableDeLuces,
+bool esValida(const vector<int> &lucesDisponibles,
+              const vector<int> &lucesInstaladas,
+              const vector<int> &solucion, int k, int &longitudCableDeLuces,
               int consumoActual, int consumoMaximo) {
     
-    if (piezasColocadas[solucion[k]] > (lucesDisponibles[solucion[k]]+1)) {
+    int sumaActual = 0;
+    for (int i = 0; i < k; i++) {
+        if (solucion[i] != solucion[k]) {
+            sumaActual += lucesInstaladas[solucion[i]];
+        }
+    }
+    
+//    if (k == 3) {
+//        bool stop = false;
+//        if(true) {
+//            stop = true;
+//        }
+//    }
+    
+    if (lucesInstaladas[solucion[k]] > (sumaActual+1)) {
         return false;//Comprobamos si el número de piezas colocadas del color solucion[k], es mayor al número de piezas de ese color disponibles.
-    } else if ((k-2 >= 0) && solucion[k-2] == solucion[k-1] == solucion[k]) {
+    } else if ((k-2 >= 0) && (solucion[k-2] == solucion[k-1] && (solucion[k-1] == solucion[k]))) {
         return false;  // Comprobamos si se han colocado más de 2 piezas iguales seguidas.
-    } else if (consumoActual >= consumoMaximo) {
+    } else if (consumoActual > consumoMaximo) {
+        return false;
+    } else if (k > ((int)solucion.size())-1) {
         return false;
     } else {
         return true;
     }
 }
 
-void vueltaAtras(vector<int> &piezasColocadas, vector<int> &lucesDisponibles,
-                 vector<int> solucion, vector<int> &consumoLucesDisponibles, int consumoActual, int consumoMaximo,
-                 int numColores, int k, int longitudCableDeLuces, int &numSoluciones) {
+void vueltaAtras(const vector<int> &lucesDisponibles, vector<int> &lucesInstaladas, vector<int> solucion,
+                 vector<int> &consumoLucesDisponibles, int consumoActual, int consumoMaximo,
+                 int numColores, int &k, int longitudCableDeLuces, int &numSoluciones) {
     
     for (int i = 0; i < numColores; i++) { //i = luz seleccionada.
         solucion[k] = i;
-        piezasColocadas[i]++;
+        lucesInstaladas[i]++;
         consumoActual += consumoLucesDisponibles[i];
-        
-        if (esValida(piezasColocadas, lucesDisponibles, solucion, k, longitudCableDeLuces, consumoActual, consumoMaximo)) {
+
+//        cout << "I: " << i <<  " k: " << k << endl;
+        if (esValida(lucesDisponibles, lucesInstaladas, solucion, k, longitudCableDeLuces, consumoActual, consumoMaximo)) {
             if (esSolucion(k, longitudCableDeLuces)) {
+//                if (numSoluciones >= 84) {
+//                    cout << "I: " << numSoluciones << " ----- ";
+//                    for (int i = 0; i < longitudCableDeLuces; i++) { //i = luz seleccionada.
+//                        cout << solucion[i] << " ";
+//                    }
+//                    cout << endl;
+//                }
+          
                 numSoluciones++;
             } else {
-                vueltaAtras(piezasColocadas, lucesDisponibles, solucion,
+                vueltaAtras(lucesDisponibles, lucesInstaladas, solucion,
                             consumoLucesDisponibles, consumoActual, consumoMaximo,
-                            numColores, k+1, longitudCableDeLuces, numSoluciones);
+                            numColores, ++k, longitudCableDeLuces, numSoluciones);
+                k--;
             }
         }
-        piezasColocadas[i]--;
+        
         consumoActual -= consumoLucesDisponibles[i];
+        lucesInstaladas[i]--;
     }
 }
 
 void construirLuces(int longitudCableDeLuces, int numColores, int consumoMaximo, vector<int> &consumoLucesDisponibles) {
     vector<int> lucesDisponibles(numColores);
-    vector<int> piezasColocadas(numColores);
+    vector<int> lucesInstaladas(numColores);
     vector<int> solucion(longitudCableDeLuces);
-    int numSoluciones = 0, consumoActual = 0;
+    int numSoluciones = 0, consumoActual = 0, k = 0;
 
-    vueltaAtras(piezasColocadas, lucesDisponibles, solucion,
+    vueltaAtras(lucesDisponibles, lucesInstaladas, solucion,
                 consumoLucesDisponibles, consumoActual, consumoMaximo,
-                numColores, 0, longitudCableDeLuces, numSoluciones);
+                numColores, k, longitudCableDeLuces, numSoluciones);
     
     tratarSolucion(numSoluciones);
 }
