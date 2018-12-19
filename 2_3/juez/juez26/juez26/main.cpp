@@ -33,19 +33,12 @@ bool esValida(const vector<int> &lucesDisponibles,
     int sumaActual = 0;
     for (int i = 0; i < k; i++) {
         if (solucion[i] != solucion[k]) {
-            sumaActual += lucesInstaladas[solucion[i]];
+            sumaActual++;//Si la pieza es diferente al color actual, la sumamos. 
         }
     }
     
-//    if (k == 3) {
-//        bool stop = false;
-//        if(true) {
-//            stop = true;
-//        }
-//    }
-    
     if (lucesInstaladas[solucion[k]] > (sumaActual+1)) {
-        return false;//Comprobamos si el número de piezas colocadas del color solucion[k], es mayor al número de piezas de ese color disponibles.
+        return false;//Comprobamos si el número de piezas colocadas del color solucion[k], es mayor al resto de piezas colocadas.
     } else if ((k-2 >= 0) && (solucion[k-2] == solucion[k-1] && (solucion[k-1] == solucion[k]))) {
         return false;  // Comprobamos si se han colocado más de 2 piezas iguales seguidas.
     } else if (consumoActual > consumoMaximo) {
@@ -69,13 +62,11 @@ void vueltaAtras(const vector<int> &lucesDisponibles, vector<int> &lucesInstalad
 //        cout << "I: " << i <<  " k: " << k << endl;
         if (esValida(lucesDisponibles, lucesInstaladas, solucion, k, longitudCableDeLuces, consumoActual, consumoMaximo)) {
             if (esSolucion(k, longitudCableDeLuces)) {
-//                if (numSoluciones >= 84) {
 //                    cout << "I: " << numSoluciones << " ----- ";
 //                    for (int i = 0; i < longitudCableDeLuces; i++) { //i = luz seleccionada.
 //                        cout << solucion[i] << " ";
 //                    }
 //                    cout << endl;
-//                }
           
                 numSoluciones++;
             } else {
