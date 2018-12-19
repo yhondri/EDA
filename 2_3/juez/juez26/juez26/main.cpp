@@ -55,8 +55,8 @@ void vueltaAtras(const vector<int> &lucesDisponibles, vector<int> &lucesInstalad
                  int numColores, int &k, int longitudCableDeLuces, int &numSoluciones) {
     
     for (int i = 0; i < numColores; i++) { //i = luz seleccionada.
-        solucion[k] = i;
-        lucesInstaladas[i]++;
+        solucion[k] = i; //Guarda la solución (palabra distinta) hasta el nivel k.
+        lucesInstaladas[i]++; //Guarda cuántas luces he puesto de cada color.
         consumoActual += consumoLucesDisponibles[i];
 
 //        cout << "I: " << i <<  " k: " << k << endl;
