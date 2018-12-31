@@ -141,10 +141,10 @@ void cancionesVA(const vector<Cancion> &canciones, int n, int duracionCara,
                 }
             }
         }
+
+        duracionOcupada[B] = duracionOcupada[B] - canciones[k].duracion;
+        beneficioActual -= canciones[k].puntuacion;
     }
-    
-    duracionOcupada[B] = duracionOcupada[B] - canciones[k].duracion;
-    beneficioActual -= canciones[k].puntuacion;
     
     solucion[k] = N; //Grabamos en la cara A.
     int beneficioEstimado = calculoEstimacion(canciones, n, duracionCara, k, duracionOcupada, beneficioActual);
