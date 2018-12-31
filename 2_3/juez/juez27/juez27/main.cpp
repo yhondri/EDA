@@ -94,7 +94,8 @@ void calcularCosteMinimo(vector<vector<int>> &productos, int numFilas, int numCo
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez27/juez27/casos");
+    ifstream in("/Users/yhondri/Downloads/eda/2_3/juez/juez27/juez27/casos");
+//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/juez27/juez27/casos"); //Mac Mini
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     

@@ -33,7 +33,8 @@ enum CintaCara {
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    ifstream in("/Users/admin/Documents/universidad/eda/2_3/laboratorios/ej9asc/ej9asc/casos");
+    ifstream in("/Users/yhondri/Downloads/eda/2_3/laboratorios/ej9asc/ej9asc/casos");
+//    ifstream in("/Users/admin/Documents/universidad/eda/2_3/laboratorios/ej9asc/ej9asc/casos"); //Mac Mini
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     
@@ -71,7 +72,7 @@ vector<Cancion> leerDatos(int n) {
 }
 
 int calculoEstimacion(const vector<Cancion> &canciones, int n, int duracionCara,
-                      int k, vector<int> &duracionOcupada, int beneficioActual) {
+                      int k, const vector<int> &duracionOcupada, int beneficioActual) {
     int hueco = duracionCara - (duracionOcupada[A] + duracionOcupada[B]);
     int estimacion = beneficioActual;
     int j = k;
@@ -93,12 +94,12 @@ bool esSolucion(int k, int n) {
     return (k == n-1);
 }
 
-void tratarSolucion(const vector<CintaCara> &solucion, vector<CintaCara> &mejorSolucion, int n,
+void tratarSolucion(const vector<CintaCara> &solucion, const vector<CintaCara> &mejorSolucion, int n,
                     int &beneficioActual, int &beneficioMejor) {
-    for (int i = 0; i < n; i++) {
-        mejorSolucion[i] = solucion[i];
-    }
-    
+//    for (int i = 0; i < n; i++) {
+//        mejorSolucion[i] = solucion[i];
+//    }
+
     beneficioMejor = beneficioActual;
 }
 
