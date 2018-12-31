@@ -26,6 +26,7 @@
 		5662321621DA282300AD4C35 /* ej3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ej3; sourceTree = BUILT_PRODUCTS_DIR; };
 		5662321921DA282300AD4C35 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5662322021DA287B00AD4C35 /* casos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
+		5662322121DA2B0800AD4C35 /* problem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = problem.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		5662321821DA282300AD4C35 /* ej3 */ = {
 			isa = PBXGroup;
 			children = (
+				5662322121DA2B0800AD4C35 /* problem.pdf */,
 				5662322021DA287B00AD4C35 /* casos */,
 				5662321921DA282300AD4C35 /* main.cpp */,
 			);
