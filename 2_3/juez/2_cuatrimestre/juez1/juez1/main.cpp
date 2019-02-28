@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <stdexcept>
 #include "Hora.h"
 
 using namespace std;
@@ -19,6 +20,7 @@ int main(int argc, const char * argv[]) {
 
     //ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
+//    ifstream in("/Users/yhondri/Documents/universidad/eda/2_3/juez/2_cuatrimestre/juez1/juez1/casos");
     ifstream in("/Users/yhondri/Documents/universidad/eda/2_3/juez/2_cuatrimestre/juez1/juez1/casos");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif

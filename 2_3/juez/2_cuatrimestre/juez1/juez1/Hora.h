@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
+#include <stdexcept>
 
 using namespace std;
 
