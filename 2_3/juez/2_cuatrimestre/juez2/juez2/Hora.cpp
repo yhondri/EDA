@@ -47,6 +47,8 @@ bool Hora::operator<(Hora const& h) const {
     return false;
 }
 
+//03:36:57 01:18:27 hchuemtxsei
+    
 Hora Hora::operator+(Hora const& h) const {
     Hora newhour;
     int acumuladorMinutos = 0;
@@ -78,5 +80,5 @@ Hora Hora::operator+(Hora const& h) const {
 }
 
 bool Hora::operator==(Hora const& h) const {
-    return ((this->hour == h.getHour()) && (this->minutes == h.minutes) && (this->seconds == seconds));
+    return ((this->hour == h.hour) && (this->minutes == h.minutes) && (this->seconds == seconds));
 }
