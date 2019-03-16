@@ -80,5 +80,5 @@ Hora Hora::operator+(Hora const& h) const {
 }
 
 bool Hora::operator==(Hora const& h) const {
-    return ((this->hour == h.hour) && (this->minutes == h.minutes) && (this->seconds == seconds));
+    return ((this->hour == h.hour) && (this->minutes == h.minutes) && (this->seconds == h.seconds));
 }

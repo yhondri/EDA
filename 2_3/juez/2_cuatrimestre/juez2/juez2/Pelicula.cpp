@@ -7,6 +7,7 @@
 //
 
 #include "Pelicula.h"
+using namespace std;
 
 Pelicula::Pelicula() : initHour(), duration(), title("") {}
 
