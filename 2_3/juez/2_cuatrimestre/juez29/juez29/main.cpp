@@ -31,22 +31,24 @@ int main(int argc, const char * argv[]) {
         cin >> numValues;
         
         unordered_map<int, int> capitulos;
-        int numMaxSinRepeticiones = 0, contadorActual = 0;
-        
-        for (int i = 0; i < numValues; i++) {
+        int i, numMaxSinRepeticiones = 0, inicioSegmentoActual = 0;
+        for (i = 0; i < numValues; i++) {
             int value;
             cin >> value;
             
-            if (capitulos.insert(value)) { //La clave no existe.
-                contadorActual++;
+            if (capitulos.count(value) == 0 || (capitulos[value] < inicioSegmentoActual)) { //La clave no existe.
+                capitulos[value] = i;
             } else {
-                numMaxSinRepeticiones = max(numMaxSinRepeticiones, contadorActual);
-                contadorActual = 0;
+                numMaxSinRepeticiones = max(numMaxSinRepeticiones, (i-inicioSegmentoActual));
+               
+                inicioSegmentoActual = capitulos[value] + 1;
+                
+                capitulos[value] = i;
             }
         }
         
-        numMaxSinRepeticiones = max(numMaxSinRepeticiones, contadorActual);
-        
+        numMaxSinRepeticiones = max(numMaxSinRepeticiones, (i-inicioSegmentoActual));
+
         cout << numMaxSinRepeticiones << "\n";
 
         numCasos--;

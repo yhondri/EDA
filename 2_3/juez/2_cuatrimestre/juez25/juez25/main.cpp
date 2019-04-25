@@ -41,8 +41,8 @@ public:
         int value, altura;
     };
     
-    bool calcularBarrera (int &mulTiploDe7, int &altura) {
-        if (this->esPrimo(this->raiz->elem)) {
+    bool calcularBarrera(int &mulTiploDe7, int &altura) {
+        if (this->empty() || this->esPrimo(this->raiz->elem)) {
             return false;
         }
         

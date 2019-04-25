@@ -31,13 +31,13 @@ bool resuelveCaso() {
         
         int newValue;
         while (cin >> newValue && newValue != -1) {
-            values.insertNewValue(newValue);
+            values.insertNewValueB(newValue);
         }
         
         string t;
         getline(cin,t);
 
-        values.print();        
+        values.printB();
 
     } else {
         set<string> values;
@@ -50,10 +50,10 @@ bool resuelveCaso() {
         istringstream iss(t);
         string word;
         while(iss >> word && word != "FIN") {
-            values.insertNewValue(word);
+            values.insertNewValueB(word);
         }
         
-        values.print();
+        values.printB();
     }
     
     cout << "\n";

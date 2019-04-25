@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		56299717226F943200CFBC3B /* juez5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = juez5; sourceTree = BUILT_PRODUCTS_DIR; };
 		5629971A226F943200CFBC3B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		56299721226F943800CFBC3B /* prob-05.LosK>-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-05.LosK>-2.pdf"; sourceTree = "<group>"; };
+		56299721226F943800CFBC3B /* prob-05.LosK>.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-05.LosK>.pdf"; sourceTree = "<group>"; };
 		56299722226F944900CFBC3B /* casos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
 		56F6D868226FAB98005A5D3B /* conjunto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conjunto.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +63,7 @@
 				5629971A226F943200CFBC3B /* main.cpp */,
 				56299722226F944900CFBC3B /* casos */,
 				56F6D868226FAB98005A5D3B /* conjunto.h */,
-				56299721226F943800CFBC3B /* prob-05.LosK>-2.pdf */,
+				56299721226F943800CFBC3B /* prob-05.LosK>.pdf */,
 			);
 			path = juez5;
 			sourceTree = "<group>";

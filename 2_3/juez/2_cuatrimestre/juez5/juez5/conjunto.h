@@ -32,6 +32,16 @@ public:
         }
     }
     
+    void insertNewValueB(T newValue) {
+        insert(newValue);
+        
+        if (contador > numElemMaxAInsertar) {
+            erase(datos[0]);
+     
+            std::sort(datos, datos+contador);
+        }
+    }
+    
     void print() {
         int i = (int)contador-1;
         while (i >= 0) {
@@ -39,6 +49,13 @@ public:
             i--;
         }
     }
+    
+    void printB() {
+        for (int i = 0; i < contador; i++) {
+            std::cout << datos[i] << " ";
+        }
+    }
+    
     
     void setNumElemMaxAInsertar(int value) {
         this->numElemMaxAInsertar = value;
@@ -103,8 +120,8 @@ void set<T>::insert(T e) {
         }
         datos[contador] = e;
         ++contador;
-        
-        std::sort(datos, datos+contador, std::greater<T>()); // Lo ordenamos de mayor a menor, de esta forma al eliminar un elemento solo tenemos que hacer contador --;
+        std::sort(datos, datos+contador);
+//        std::sort(datos, datos+contador, std::greater<T>()); // Lo ordenamos de mayor a menor, de esta forma al eliminar un elemento solo tenemos que hacer contador --;
     }
 }
 
