@@ -48,30 +48,44 @@ public:
         
         std::vector<AlturaNode> alturas;
         bool encontrado = false;
+        altura = 1;
         
         if (!this->empty()) {
             std::queue<Link> pendientes;
             pendientes.push(this->raiz);
-            
+            alturas.push_back(AlturaNode(this->raiz->elem, altura));
+            int alturaRight = 1;
+            int i = 0;
+            int alturaIndice = 0;
+
             while (!pendientes.empty() && !encontrado) {
                 Link sig = pendientes.front();
                 pendientes.pop();
+                
+                altura++;
+                
                 if (sig->elem % 7 == 0) {
                     encontrado = true;
                     mulTiploDe7 = sig->elem;
-                } else if (sig->left != nullptr && sig->right != nullptr) {
-                    altura++;
-                    
-                    if(!this->esPrimo(sig->left->elem)) {
+                } else {
+                    if (i == 0) {
+                        alturaIndice = 0;
+                    } else {
+                        alturaIndice = i;
+                    }
+                    if(sig->left != nullptr && !this->esPrimo(sig->left->elem)) {
                         pendientes.push(sig->left);
-                        alturas.push_back(AlturaNode(sig->left->elem, altura));
+                        alturas.push_back(AlturaNode(sig->left->elem, alturas[alturaIndice].altura+1));
                     }
                     
-                    if(!this->esPrimo(sig->right->elem)) {
+                    if(sig->right != nullptr && !this->esPrimo(sig->right->elem)) {
                         pendientes.push(sig->right);
-                        alturas.push_back(AlturaNode(sig->right->elem, altura));
+                        alturas.push_back(AlturaNode(sig->right->elem, alturas[alturaIndice].altura+1));
+                        
                     }
                 }
+                
+                i++;
             }
         }
         
@@ -108,7 +122,7 @@ bintree_ext<T> leerArbolext(T vacio) {
 void resuelveCaso() {
     bintree_ext<int> nuevoArbol = leerArbolext(-1);
     
-    int multiploDe7 = 0, altura = 1;
+    int multiploDe7 = 0, altura = 0;
     
     if (nuevoArbol.calcularBarrera(multiploDe7, altura)) {
         cout << multiploDe7 << " " << altura << "\n";
