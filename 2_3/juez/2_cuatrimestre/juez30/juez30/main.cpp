@@ -29,6 +29,9 @@ map<string, int> leerDatos() {
     return datos;
 }
 
+/**
+ Al ser una implementación mediante Treemap, los valores que contienen están ordenados.
+ */
 void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
     vector<string> nuevasClaves;
     vector<string> clavesEliminadas;
@@ -38,13 +41,14 @@ void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
     itUpdated = updatedMap.cbegin(), end_m2 = updatedMap.cend();
     
     while(itOriginal != end_m1 && itUpdated != end_m2) {
-        if (updatedMap.find(itOriginal->clave) == updatedMap.end()) { // Clave NO encontrada, entonces eliminada
-            clavesEliminadas.push_back(itOriginal->clave);
-        } else if (updatedMap.find(itOriginal->clave) != updatedMap.end()) { // Clave encontrada
+        if (updatedMap.find(itOriginal->clave) != updatedMap.end()) { // Clave encontrada
             if (updatedMap[itOriginal->clave] != originalMap[itOriginal->clave]) {
                 clavesValorCambiado.push_back(itOriginal->clave);
             }
+            
             ++itUpdated;
+        } else {
+            clavesEliminadas.push_back(itOriginal->clave);
         }
         
         ++itOriginal;
@@ -54,7 +58,7 @@ void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
         clavesEliminadas.push_back(itOriginal->clave);
         ++itOriginal;
     }
-
+    
     while (itUpdated != end_m2) {
         nuevasClaves.push_back(itUpdated->clave);
         ++itUpdated;
@@ -62,7 +66,7 @@ void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
     
     if (nuevasClaves.size() > 0) {
         cout << "+ ";
-       
+        
         for (auto value : nuevasClaves) {
             cout << value << " ";
         }
@@ -109,13 +113,13 @@ int main(int argc, const char * argv[]) {
     int numCasos;
     cin >> numCasos;
     string temp;
-    getline(cin, temp); //Para limpiar la primera línea. 
+    getline(cin, temp); //Para limpiar la primera línea.
     
     while (numCasos > 0) {
         
         map<string, int> originalMap = leerDatos();
         map<string, int> updatedMap = leerDatos();
-
+        
         resolverCaso(originalMap, updatedMap);
         
         numCasos--;
