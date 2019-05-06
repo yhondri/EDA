@@ -9,9 +9,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <vector>
+#include <set>
 #include <algorithm>
-#include "treemap_eda.h"
+#include <map>
 
 using namespace std;
 
@@ -20,22 +20,21 @@ void toLower(string &word) {
 }
 
 bool resolverCaso() {
-    
     int numLineas;
     cin >> numLineas;
-    string temp;
-    getline(cin, temp); //Para limpiar la primera línea.
     
-    if (!cin) {
+    if (!cin || numLineas == 0) {
         return false;
     }
     
+    string temp;
+    getline(cin, temp); //Para limpiar la primera línea.
+    
+    
     string line, clave;
-    map<string, vector<int>> palabras;
+    map<string, set<int>> palabras;
     
-    int lineaActual = 1;
-    
-    while (numLineas > 0) {
+    for(int i = 1; i <= numLineas; i++) {
         getline(cin, line);
         istringstream iss(line);
         
@@ -44,35 +43,26 @@ bool resolverCaso() {
                 
                 toLower(clave);
                 
-                if (palabras.find(clave) == palabras.end()) { //insertamos la palabra por primera vez
-                    palabras[clave].push_back(lineaActual);
-                } else {
-                    if(palabras[clave].back() != lineaActual) { //Solo metemos si ya no hemos metido la palabra en esta línea
-                        palabras[clave].push_back(lineaActual);
-                    }
-                }
+                palabras[clave].insert(i);
             }
         }
-        
-        lineaActual++;
-        numLineas--;
     }
     
-    //Limpiamos última línea.
-    cin >> numLineas;
-    getline(cin, temp);
-    
     for(const auto& value : palabras) {
-        cout << value.clave << " ";
+        cout << value.first;
         
-        for (int page : value.valor) {
-            cout << page << " ";
+        for (int page : value.second) {
+            cout << " " << page;
         }
         
         cout << "\n";
     }
     
-    cout << "----" << "\n";
+    cout << "----\n";
+    
+    //Limpiamos última línea.
+    //    cin >> numLineas;
+    getline(cin, temp);
     
     return true;
 }
@@ -80,17 +70,16 @@ bool resolverCaso() {
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-    
+
     ifstream in("/Users/yhondri/Documents/universidad/eda/2_3/juez/2_cuatrimestre/juez31/juez31/casos");
-    //    ifstream in("/Users/admin/Documents/universidad/eda/2_3/juez/2_cuatrimestre/juez29/juez29/casos");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
-    
+////
     while (resolverCaso()) {}
-    
+////
 #ifndef DOMJUDGE
     cin.rdbuf(cinbuf);
-    //    system("PAUSE");
+//        system("PAUSE");
 #endif
     
     return 0;
