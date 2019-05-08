@@ -6,11 +6,14 @@
 //  Copyright © 2019 yhondri. All rights reserved.
 //
 
+// Yhondri Josué Acosta Novas
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include "treemap_eda.h"
+#include <list>
 
 using namespace std;
 
@@ -32,12 +35,36 @@ map<string, int> leerDatos() {
 /**
  Al ser una implementación mediante Treemap, los valores que contienen están ordenados.
  */
-void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
+void resolverCaso(map<string, int> originalMap) {
     vector<string> nuevasClaves;
     vector<string> clavesEliminadas;
     vector<string> clavesValorCambiado;
     
-    auto itOriginal = originalMap.cbegin(), end_m1 = originalMap.cend(),
+    map<string, list<string>> result;
+    
+    string line, clave;
+    int value;
+    
+    getline(cin, line);
+    istringstream iss(line);
+    
+    while (iss >> clave && iss >> value) {
+        if (originalMap.find(clave) == originalMap.end()) { // Nueva clave
+            result["+"].push_back(clave);
+        } else if(originalMap.find(clave) != originalMap.end()) { // Clave encontrada)
+            if (originalMap[clave] != value) {
+                result["*"].push_back(clave);
+            }
+            
+            originalMap.erase(clave);
+        }
+    }
+    
+    for (auto mapKey : originalMap) {
+        result["-"].push_back(mapKey.clave);
+    }
+    
+   /** auto itOriginal = originalMap.cbegin(), end_m1 = originalMap.cend(),
     itUpdated = updatedMap.cbegin(), end_m2 = updatedMap.cend();
     
     while(itOriginal != end_m1 && itUpdated != end_m2) {
@@ -63,38 +90,41 @@ void resolverCaso(map<string, int> originalMap, map<string, int> updatedMap) {
         nuevasClaves.push_back(itUpdated->clave);
         ++itUpdated;
     }
-    
-    if (nuevasClaves.size() > 0) {
+    */
+    result["+"].sort();
+    result["-"].sort();
+    result["*"].sort();
+
+    if (result["+"].size() > 0) {
         cout << "+ ";
         
-        for (auto value : nuevasClaves) {
+        for (auto value : result["+"]) {
             cout << value << " ";
         }
         
         cout << "\n";
     }
     
-    if (clavesEliminadas.size() > 0) {
+    if (result["-"].size() > 0) {
         cout << "- ";
         
-        for (auto value : clavesEliminadas) {
+        for (auto value : result["-"]) {
             cout << value << " ";
         }
         
         cout << "\n";
     }
     
-    if (clavesValorCambiado.size() > 0) {
+    if (result["*"].size() > 0) {
         cout << "* ";
         
-        for (auto value : clavesValorCambiado) {
+        for (auto value : result["*"]) {
             cout << value << " ";
         }
         
         cout << "\n";
     }
-    
-    if (nuevasClaves.size() == 0 && clavesEliminadas.size() == 0 && clavesValorCambiado.size() == 0) {
+    if (result["+"].size() == 0 && result["-"].size() == 0 && result["*"].size() == 0) {
         cout << "Sin cambios\n";
     }
     
@@ -116,11 +146,9 @@ int main(int argc, const char * argv[]) {
     getline(cin, temp); //Para limpiar la primera línea.
     
     while (numCasos > 0) {
-        
         map<string, int> originalMap = leerDatos();
-        map<string, int> updatedMap = leerDatos();
         
-        resolverCaso(originalMap, updatedMap);
+        resolverCaso(originalMap);
         
         numCasos--;
     }
