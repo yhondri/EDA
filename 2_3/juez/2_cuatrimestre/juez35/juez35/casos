@@ -1,29 +1,199 @@
-nuevo 123A
-nuevo 456B
-nuevo 666
-cuantos_con_puntos 15
-cuantos_con_puntos 0
-lista_por_puntos 15
-quitar 666 15
+nuevo 10
+nuevo 11
+nuevo 15
+nuevo 12
+nuevo 1
+nuevo 1
+nuevo 10
+nuevo 17
+nuevo 18
+nuevo 1
+nuevo 14
+nuevo 0
+nuevo 6
+nuevo 16
+nuevo 10
+nuevo 8
+nuevo 19
+nuevo 5
+nuevo 4
+nuevo 14
+recuperar 13 14
 lista_por_puntos 0
-quitar 456B 9
-consultar 456B
-quitar 123A 10
-recuperar 123A 1
-lista_por_puntos 6
-recuperar 123A 1
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
 lista_por_puntos 6
 lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+consultar 1
+recuperar 17 4
+lista_por_puntos 0
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
+lista_por_puntos 6
+lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+quitar 11 5
+cuantos_con_puntos 0
+cuantos_con_puntos 1
+cuantos_con_puntos 2
+cuantos_con_puntos 3
+cuantos_con_puntos 4
+cuantos_con_puntos 5
+cuantos_con_puntos 6
+cuantos_con_puntos 7
+cuantos_con_puntos 8
+cuantos_con_puntos 9
+cuantos_con_puntos 10
+cuantos_con_puntos 11
+cuantos_con_puntos 12
+cuantos_con_puntos 13
+cuantos_con_puntos 14
+cuantos_con_puntos 15
+cuantos_con_puntos 16
+lista_por_puntos 0
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
+lista_por_puntos 6
+lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+recuperar 11 12
+quitar 14 3
+quitar 7 3
+recuperar 10 8
+consultar 18
+recuperar 6 11
+lista_por_puntos 0
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
+lista_por_puntos 6
+lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+recuperar 5 15
+lista_por_puntos 0
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
+lista_por_puntos 6
+lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+quitar 7 6
+recuperar 18 8
+quitar 12 14
+cuantos_con_puntos 0
+cuantos_con_puntos 1
+cuantos_con_puntos 2
+cuantos_con_puntos 3
+cuantos_con_puntos 4
+cuantos_con_puntos 5
+cuantos_con_puntos 6
+cuantos_con_puntos 7
+cuantos_con_puntos 8
+cuantos_con_puntos 9
+cuantos_con_puntos 10
+cuantos_con_puntos 11
+cuantos_con_puntos 12
+cuantos_con_puntos 13
+cuantos_con_puntos 14
+cuantos_con_puntos 15
+cuantos_con_puntos 16
+recuperar 16 7
+cuantos_con_puntos 0
+cuantos_con_puntos 1
+cuantos_con_puntos 2
+cuantos_con_puntos 3
+cuantos_con_puntos 4
+cuantos_con_puntos 5
+cuantos_con_puntos 6
+cuantos_con_puntos 7
+cuantos_con_puntos 8
+cuantos_con_puntos 9
+cuantos_con_puntos 10
+cuantos_con_puntos 11
+cuantos_con_puntos 12
+cuantos_con_puntos 13
+cuantos_con_puntos 14
+cuantos_con_puntos 15
+cuantos_con_puntos 16
+lista_por_puntos 0
+lista_por_puntos 1
+lista_por_puntos 2
+lista_por_puntos 3
+lista_por_puntos 4
+lista_por_puntos 5
+lista_por_puntos 6
+lista_por_puntos 7
+lista_por_puntos 8
+lista_por_puntos 9
+lista_por_puntos 10
+lista_por_puntos 11
+lista_por_puntos 12
+lista_por_puntos 13
+lista_por_puntos 14
+lista_por_puntos 15
+lista_por_puntos 16
+consultar 12
+recuperar 3 8
+consultar 8
+quitar 13 14
+recuperar 14 2
+recuperar 11 5
 FIN
-nuevo 123A
-nuevo 123A
-cuantos_con_puntos 20
-quitar 456B 2
-FIN
-nuevo 123A
-quitar 123A 2
-recuperar 123A 98792
-consultar 123A
-lista_por_puntos -7
-cuantos_con_puntos -9
-FIN
+
+
+
+

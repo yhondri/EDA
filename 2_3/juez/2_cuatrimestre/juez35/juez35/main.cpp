@@ -71,12 +71,15 @@ public:
             conductores[dni].puntos -= puntos;
         }
         
-        list<DNI> &listaPuntosAntiguos = usuariosPorPuntos[puntosAntes]; //Devuelve la lista
-        listaPuntosAntiguos.erase(conductores[dni].itLista);
-        
-        list<DNI> &listaPuntosNuevos = usuariosPorPuntos[conductores[dni].puntos]; //Devuelve la lista
-        listaPuntosNuevos.push_front(dni); //Añadimos un nuevo usuario con esos puntos.
-        conductores[dni].itLista = listaPuntosNuevos.begin(); //Añadimos la referencia a esa lista.
+        //No hace falta volver a introducirlo en la lista si los puntos son los mismos
+        if (conductores[dni].puntos != puntosAntes) {
+            list<DNI> &listaPuntosAntiguos = usuariosPorPuntos[puntosAntes]; //Devuelve la lista
+            listaPuntosAntiguos.erase(conductores[dni].itLista);
+            
+            list<DNI> &listaPuntosNuevos = usuariosPorPuntos[conductores[dni].puntos]; //Devuelve la lista
+            listaPuntosNuevos.push_front(dni); //Añadimos un nuevo usuario con esos puntos.
+            conductores[dni].itLista = listaPuntosNuevos.begin(); //Añadimos la referencia a esa lista.
+        }
     }
     
     void recuperar(string dni, int puntos) {
@@ -96,13 +99,15 @@ public:
             conductores[dni].puntos += puntos;
         }
         
-        list<DNI> &listaPuntosAntiguos = usuariosPorPuntos[puntosAntes]; //Devuelve la lista
-        listaPuntosAntiguos.erase(conductores[dni].itLista);
-        
-        list<DNI> &listaPuntosNuevos = usuariosPorPuntos[conductores[dni].puntos]; //Devuelve la lista
-        listaPuntosNuevos.push_front(dni); //Añadimos un nuevo usuario con esos puntos.
-        conductores[dni].itLista = listaPuntosNuevos.begin(); //Añadimos la referencia a esa lista.
-        
+        //No hace falta volver a introducirlo en la lista si los puntos son los mismos
+        if (conductores[dni].puntos != puntosAntes) {
+            list<DNI> &listaPuntosAntiguos = usuariosPorPuntos[puntosAntes]; //Devuelve la lista
+            listaPuntosAntiguos.erase(conductores[dni].itLista);
+            
+            list<DNI> &listaPuntosNuevos = usuariosPorPuntos[conductores[dni].puntos]; //Devuelve la lista
+            listaPuntosNuevos.push_front(dni); //Añadimos un nuevo usuario con esos puntos.
+            conductores[dni].itLista = listaPuntosNuevos.begin(); //Añadimos la referencia a esa lista.
+        }
     }
     
     int consultar(string dni) {
@@ -195,3 +200,40 @@ bool resuelveCaso() {
     std::cout << "---\n";
     return true;
 }
+
+
+
+
+
+/**
+
+nuevo 123A
+nuevo 456B
+nuevo 666
+cuantos_con_puntos 15
+cuantos_con_puntos 0
+lista_por_puntos 15
+quitar 666 15
+lista_por_puntos 0
+quitar 456B 9
+consultar 456B
+quitar 123A 10
+recuperar 123A 1
+lista_por_puntos 6
+recuperar 123A 1
+lista_por_puntos 6
+lista_por_puntos 7
+FIN
+nuevo 123A
+nuevo 123A
+cuantos_con_puntos 20
+quitar 456B 2
+FIN
+nuevo 123A
+quitar 123A 2
+recuperar 123A 98792
+consultar 123A
+lista_por_puntos -7
+cuantos_con_puntos -9
+FIN
+*/
