@@ -237,7 +237,7 @@ bool resuelveCaso() {
             }
             
         } catch (std::domain_error e) {
-            std::cout << "ERROR: " << e.what() << '\n';
+            std::cout << e.what() << '\n';
             cout << "---" << endl;
         }
         numConsultas--;
