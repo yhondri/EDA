@@ -9,48 +9,122 @@
 #ifndef autoescuela_h
 #define autoescuela_h
 
-#include <set>
+#include <iostream>
 #include <unordered_map>
-#include <vector>
+#include <map>
+#include <list>
 #include <stdexcept>
+#include <string>
+#include <set>
+#include <algorithm>
 
-using alumno = string;
-using profesor = string;
+using namespace std;
+
+using alumnoId = string;
+using profesorId = string;
+
+class alumnoInfo {
+public:
+    string mAlumnoId;
+    int puntuacion;
+    string mProfesorId;
+    
+    alumnoInfo() = default;
+    
+    alumnoInfo(string aId, int p, string pId) : mAlumnoId(aId), puntuacion(p), mProfesorId(pId) {
+        
+    }
+    
+    bool operator<(alumnoInfo const& otro) const  {
+        return (mAlumnoId < otro.mAlumnoId);
+    }
+};
 
 class autoescuela {
 
 private:
-    unordered_map<alumno, pair<profesor, int>> alumnos;
-    unordered_map<profesor, set<alumno>> profesores;
+    unordered_map<alumnoId, alumnoInfo> alumnos;
+    unordered_map<profesorId, unordered_map<int, set<alumnoInfo>>> profesores;
     
 public:
-    void alta(alumno const &mAlumno, profesor const &mProfesor) {
-        auto itAlumnos = alumnos.find(mAlumno);
-        
-        if (itAlumnos == alumnos.end()) {
-            alumnos[mAlumno] = {mProfesor, 0};
-            profesores[mProfesor].insert(mAlumno);
+    void alta(alumnoId alumno, profesorId mProfesor) {
+      if (alumnos.count(alumno) == 0) {
+            alumnos[alumno] = alumnoInfo(alumno, 0, mProfesor);
+           profesores[mProfesor][0].insert(alumnos[alumno]);
         } else {
-            profesores[itAlumnos->second.first].erase(mAlumno);
-            
-            itAlumnos->second.first = mProfesor;
+            string antiguoProfesorId = alumnos[alumno].mProfesorId;
+            int puntosAlumno = alumnos[alumno].puntuacion;
+            //Eliminamos antiguo profesor.
+            profesores[antiguoProfesorId][puntosAlumno].erase(alumnos[alumno]);
+            //Añadimos nuevo profesor.
+            alumnos[alumno].mProfesorId = mProfesor;
+            profesores[mProfesor][puntosAlumno].insert(alumnos[alumno]);
         }
     }
     
-    vector<alumno> examen(profesor &mProfesor, int n) {
-        vector<alumno> v;
+    bool es_alumno(alumnoId alumnoId, profesorId mProfesorId) {
+        if (alumnos.count(alumnoId) == 0 || profesores.count(mProfesorId) == 0) {
+            return false;
+        }
         
-        auto itp = profesores.end();
+        int puntosAlumno = alumnos[alumnoId].puntuacion;
+        return (profesores[mProfesorId][puntosAlumno].find(alumnos[alumnoId]) != profesores[mProfesorId][puntosAlumno].end());
+    }
+    
+    int puntuacion(alumnoId alumnoId) {
+        if (alumnos.count(alumnoId) == 0) {
+            string error = "El alumno " + alumnoId + " no esta matriculado";
+            throw domain_error(error);
+        }
         
-        if(itp != profesores.end()) {
-            for (alumno const &a :  itp->second) {
-                if (alumnos.at(a).second >= n) {
-                    v.push_back(a);
+        return alumnos[alumnoId].puntuacion;
+    }
+    
+    void actualizar(alumnoId alumnoId, int nuevosPuntos) {
+        if (alumnos.count(alumnoId) == 0) {
+            string error = "El alumno " + alumnoId + " no esta matriculado";
+            throw domain_error(error);
+        }
+        
+        string profesorId = alumnos[alumnoId].mProfesorId;
+        int antiguosPuntos = alumnos[alumnoId].puntuacion;
+        
+        profesores[profesorId][antiguosPuntos].erase(alumnos[alumnoId]);
+        
+        alumnos[alumnoId].puntuacion += nuevosPuntos;
+
+        profesores[profesorId][alumnos[alumnoId].puntuacion].insert(alumnos[alumnoId]);
+    }
+    
+    set<alumnoId> examen(profesorId mProfesorId, int puntos) {
+        if (profesores.count(mProfesorId) == 0) {
+            return set<alumnoId>();
+        }
+        
+        set<alumnoId> result;
+        
+        for(auto keyValue : profesores[mProfesorId]) {
+            if (keyValue.first >= puntos) {
+                for(auto alumno : keyValue.second) {
+                    result.insert(alumno.mAlumnoId);
                 }
             }
         }
         
-        return v;
+        return result;
+    }
+    
+    void aprobar(alumnoId alumnoId) {
+        if (alumnos.count(alumnoId) == 0) {
+            string error = "El alumno " + alumnoId + " no esta matriculado";
+            throw domain_error(error);
+        }
+        
+        string profesorId = alumnos[alumnoId].mProfesorId;
+        int puntos = alumnos[alumnoId].puntuacion;
+        
+        profesores[profesorId][puntos].erase(alumnos[alumnoId]);
+        alumnos.erase(alumnoId);
     }
 };
 

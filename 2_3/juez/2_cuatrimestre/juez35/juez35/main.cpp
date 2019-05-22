@@ -26,7 +26,7 @@ private:
     typedef struct {
         int puntos;
         list<DNI>:: iterator itLista;
-    }infoConductor;
+    } infoConductor;
     
     unordered_map<DNI, infoConductor> conductores;
     

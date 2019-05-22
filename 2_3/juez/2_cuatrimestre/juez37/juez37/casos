@@ -1,9 +1,33 @@
-3
-17:40:20 02:20:10 El hombre tranquilo
-15:30:00 01:35:40 12 hombres sin piedad
-20:40:10 01:55:10 Horizontes lejanos
-3
-15:10:00 01:20:00 Gremlins
-13:10:00 03:20:00 Ben-Hur
-12:00:50 00:59:10 La soga
-0
+alta Luis PACO
+alta Marta PACO
+es_alumno Luis PACO
+es_alumno Marta RAMON
+examen PACO 0
+actualizar Marta 10
+examen PACO 10
+examen JUAN 10
+alta Marta JUAN
+puntuacion Marta
+actualizar Marta 10
+examen JUAN 20
+actualizar Miguel 5
+aprobar Marta
+examen JUAN 20
+FIN
+puntuacion Alejandro
+alta Alejandro ISABEL
+actualizar Alejandro 20
+puntuacion Alejandro
+aprobar Alejandro
+puntuacion Alejandro
+FIN
+actualizar Alejandro 20
+FIN
+es_alumno Luis PACO
+FIN
+alta Luis PACO
+alta Marta PACO
+actualizar Luis 10
+actualizar Marta 20
+examen PACO 10
+FIN

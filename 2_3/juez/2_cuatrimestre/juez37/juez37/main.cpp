@@ -9,7 +9,6 @@ using namespace std;
 
 #include "autoescuela.h"
 
-
 bool resuelveCaso() {
     std::string orden, alum, prof;
     int punt;
