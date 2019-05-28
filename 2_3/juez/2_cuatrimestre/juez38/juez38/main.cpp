@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <list>
 #include <vector>
+#include "iPud.h"
+
 
 using namespace std;
 
@@ -32,7 +34,7 @@ public:
     cancionInfo() = default;
 };
 
-class iPud {
+class iPud2 {
 private:
     unordered_map<cancionId, cancionInfo> biblioteca;
     list<cancionId> playlist;
@@ -57,11 +59,10 @@ public:
         
         //La canción no está en la play list
         if(biblioteca[cancion].itPlaylist == itEnd) {
-            biblioteca[cancion].itPlaylist = playlist.insert(biblioteca[cancion].itPlaylist, cancion);
+            biblioteca[cancion].itPlaylist = playlist.insert(playlist.end(), cancion);
             
             tiempoTotalPlaylist += biblioteca[cancion].duracion;
         }
-        
     }
     
     pair<bool, string> current() {
@@ -77,23 +78,15 @@ public:
             string cancion = playlist.front();
             playlist.pop_front();
             
-            int resultado = (tiempoTotalPlaylist - biblioteca[cancion].duracion);
-            if (resultado > 0)  {
-                tiempoTotalPlaylist = resultado;
-            } else {
-                tiempoTotalPlaylist = 0;
+           tiempoTotalPlaylist -= biblioteca[cancion].duracion;
+            
+            if (biblioteca[cancion].itRecientes != recientes.end()) {
+                recientes.erase(biblioteca[cancion].itRecientes);
             }
             
+            biblioteca[cancion].itRecientes = recientes.insert(recientes.begin(), cancion);
             //Sacamos la canción de la playList.
             biblioteca[cancion].itPlaylist = playlist.end();
-            
-            if (biblioteca[cancion].itRecientes == recientes.end()) {
-                //Introducimos la canción en la lista de recientes.
-                biblioteca[cancion].itRecientes = recientes.insert(recientes.end(), cancion);
-            } else {
-                recientes.erase(biblioteca[cancion].itRecientes);
-                biblioteca[cancion].itRecientes = recientes.insert(recientes.end(), cancion);
-            }
         }
     }
     
@@ -106,7 +99,7 @@ public:
         
         int i = 0;
         for (auto it = recientes.begin(); it != recientes.end() && i < n; ++it, i++) {
-            result.push_front(*it);
+            result.push_back(*it);
         }
         
         return result;
@@ -117,26 +110,91 @@ public:
             return;
         }
         
-        if (biblioteca[cancion].itRecientes != recientes.end()) {
+        if (!recientes.empty() && biblioteca[cancion].itRecientes != recientes.end()) {
             recientes.erase(biblioteca[cancion].itRecientes);
         }
         
-        if (biblioteca[cancion].itPlaylist != playlist.end()) {
+        if (!playlist.empty() && biblioteca[cancion].itPlaylist != playlist.end()) {
             playlist.erase(biblioteca[cancion].itPlaylist);
+            tiempoTotalPlaylist -= biblioteca[cancion].duracion;
         }
         
-        int resultado = (tiempoTotalPlaylist - biblioteca[cancion].duracion);
-        if (resultado > 0)  {
-            tiempoTotalPlaylist = resultado;
-        } else {
-            tiempoTotalPlaylist = 0;
-        }
-        
+      
         biblioteca.erase(cancion);
     }
 };
 
 bool resuelveCaso();
+
+
+
+// resuelve un caso de prueba, leyendo de la entrada la
+// configuración, y escribiendo la respuesta
+bool resuelveCaso2() {
+    string orden, cancion, artista;
+    int duracion, n;
+    iPud mp3;
+    
+    cin >> orden;
+    
+    if (!std::cin)  // fin de la entrada
+        return false;
+    
+    while (orden != "FIN"){
+        try{
+            if (orden == "addSong"){
+                cin >> cancion >> artista >> duracion;
+                mp3.addCancion(cancion, artista, duracion);
+            }
+            else if (orden == "addToPlaylist"){
+                cin >> cancion;
+                mp3.addToPlaylist(cancion);
+            }
+            else if (orden == "play"){
+                cancion = mp3.play();
+                if (cancion != "ERROR"){
+                    cout << "Sonando " << cancion << endl;
+                }
+                else{
+                    cout << "No hay canciones en la lista" << endl;
+                }
+            }
+            else if (orden == "totalTime"){
+                cout << "Tiempo total " << mp3.totalTime() << endl;
+            }
+            else if (orden == "deleteSong"){
+                cin >> cancion;
+                mp3.deleteSong(cancion);
+            }
+            else if (orden == "current"){
+                mp3.current();
+            }
+            else if (orden == "recent"){
+                cin >> n;
+                list<string> lista = mp3.recent(n);
+                if (lista.empty()){
+                    cout << "No hay canciones recientes" << endl;
+                }
+                else{
+                    cout << "Las " << n << " mas recientes" << endl;
+                    for (auto const &i : lista){
+                        cout << "    " << i << endl;
+                    }
+                }
+            }
+            
+            cin >> orden;
+        }
+        
+        catch (domain_error e){
+            cout << e.what() << endl;
+            cin >> orden;
+        }
+    }
+    cout << "----" << endl;
+    
+    return true;
+}
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
@@ -147,7 +205,7 @@ int main(int argc, const char * argv[]) {
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     
-    while (resuelveCaso());
+    while (resuelveCaso2());
     
 #ifndef DOMJUDGE
     cin.rdbuf(cinbuf);
@@ -164,7 +222,7 @@ bool resuelveCaso() {
     if (!std::cin)
         return false;
     
-    iPud ipod;
+    iPud2 ipod;
     
     while (orden != "FIN") {
         try {

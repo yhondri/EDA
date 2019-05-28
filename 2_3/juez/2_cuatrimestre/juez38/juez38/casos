@@ -1,70 +1,211 @@
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
+addSong cancion0 A 8
+addSong cancion1 A 50
+addSong cancion2 A 74
+addSong cancion3 A 59
+addSong cancion4 A 31
+addSong cancion5 A 73
+addSong cancion6 A 45
+addSong cancion7 A 79
+addSong cancion8 A 24
+addSong cancion9 A 10
+deleteSong cancion5
+addToPlaylist cancion2
+addToPlaylist cancion3
+totalTime
+play
+play
+addSong cancion3 A 70
+addToPlaylist cancion7
+addToPlaylist cancion3
+deleteSong cancion8
+addToPlaylist cancion5
+play
+addSong cancion2 A 68
+addToPlaylist cancion3
+addToPlaylist cancion9
+addToPlaylist cancion1
+deleteSong cancion2
+addToPlaylist cancion6
+totalTime
+recent 9
+play
+deleteSong cancion7
+totalTime
+recent 9
+addToPlaylist cancion8
+addSong cancion4 A 97
+deleteSong cancion3
+recent 7
+recent 5
+addToPlaylist cancion3
+addToPlaylist cancion8
+totalTime
+addSong cancion8 A 82
+recent 4
+addToPlaylist cancion4
+addToPlaylist cancion6
+deleteSong cancion9
+deleteSong cancion4
+addToPlaylist cancion1
+addToPlaylist cancion5
+play
+addSong cancion1 A 99
+play
+addToPlaylist cancion5
+totalTime
+recent 7
+deleteSong cancion7
+play
+addSong cancion1 A 98
+play
+addSong cancion7 A 59
+play
+addSong cancion4 A 5
+totalTime
+totalTime
+addSong cancion5 A 36
+deleteSong cancion2
+addSong cancion8 A 13
+deleteSong cancion7
+recent 9
+totalTime
+play
+deleteSong cancion0
+addToPlaylist cancion2
+recent 6
+addSong cancion2 A 68
+recent 6
+addToPlaylist cancion1
+totalTime
+deleteSong cancion1
+addToPlaylist cancion7
+addSong cancion0 A 41
+play
+recent 7
+addToPlaylist cancion8
+addSong cancion9 A 55
+play
+addToPlaylist cancion0
+addSong cancion6 A 24
+addToPlaylist cancion3
+totalTime
+addToPlaylist cancion4
+addToPlaylist cancion4
+addToPlaylist cancion4
+deleteSong cancion4
+play
+recent 5
+addSong cancion0 A 60
+recent 8
+deleteSong cancion7
+addToPlaylist cancion9
+addToPlaylist cancion5
+totalTime
+addSong cancion3 A 21
+addToPlaylist cancion8
+totalTime
+play
+addToPlaylist cancion4
+totalTime
+deleteSong cancion9
+totalTime
+addToPlaylist cancion5
+addToPlaylist cancion6
+play
+addToPlaylist cancion1
+recent 10
+recent 4
+addSong cancion5 A 11
+addToPlaylist cancion1
+deleteSong cancion7
+recent 6
+totalTime
+recent 6
+play
+play
+addToPlaylist cancion4
+addToPlaylist cancion6
+addToPlaylist cancion2
+addToPlaylist cancion4
+addToPlaylist cancion5
+deleteSong cancion7
+play
+addToPlaylist cancion9
+addSong cancion5 A 56
 play
 totalTime
-addSong LuckyTown BruceSpringsteen 207
-addToPlaylist LuckyTown
-play
-play
-deleteSong HumanTouch
-recent 2
-FIN
-play
-current
-FIN
-addSong HumanTouch BruceSpringsteen 10
-addSong BornToRun BruceSpringsteen 10
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
 totalTime
-deleteSong HumanTouch
 totalTime
-FIN
-addSong HumanTouch BruceSpringsteen 10
-addSong HumanTouch BruceSpringsteen 10
-FIN
-addToPlaylist BornToRun
-FIN
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
+addToPlaylist cancion9
+totalTime
+addToPlaylist cancion8
+addToPlaylist cancion7
+recent 10
+addToPlaylist cancion1
+addToPlaylist cancion4
+deleteSong cancion5
+totalTime
+addToPlaylist cancion9
+recent 5
 play
+totalTime
+addSong cancion7 A 26
+addToPlaylist cancion6
+recent 8
+addToPlaylist cancion4
+addToPlaylist cancion0
 play
-recent 3
-FIN
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
+totalTime
+deleteSong cancion7
+totalTime
+addToPlaylist cancion8
+addSong cancion8 A 100
+addSong cancion9 A 54
+addToPlaylist cancion7
+addToPlaylist cancion3
+totalTime
+addToPlaylist cancion6
+deleteSong cancion4
+totalTime
 play
+addToPlaylist cancion4
+recent 6
+recent 9
+addToPlaylist cancion3
+deleteSong cancion6
+totalTime
 play
-addToPlaylist BornToRun
+addToPlaylist cancion1
+deleteSong cancion4
+recent 8
+addToPlaylist cancion1
+totalTime
+addToPlaylist cancion3
+addToPlaylist cancion1
+addToPlaylist cancion9
 play
-recent 3
-FIN
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
+addToPlaylist cancion4
+addToPlaylist cancion0
+deleteSong cancion0
+addToPlaylist cancion7
+addSong cancion0 A 56
+addToPlaylist cancion7
 play
+recent 7
+recent 8
 play
-addToPlaylist BornToRun
+addSong cancion3 A 61
+addToPlaylist cancion8
+addToPlaylist cancion5
 play
-addToPlaylist BornToRun
+addSong cancion3 A 3
+addToPlaylist cancion3
+totalTime
+deleteSong cancion7
+addToPlaylist cancion5
+recent 4
+recent 9
+addToPlaylist cancion8
+addToPlaylist cancion6
 play
-recent 3
-FIN
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
-play
-play
-deleteSong HumanTouch
-recent 3
-FIN
-recent 3
 FIN

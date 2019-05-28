@@ -1,0 +1,12 @@
+11
+an_paciente 1 Yerim 23 Vómitos leve
+an_paciente 2 Yhondri 25 Espalda leve
+an_paciente 3 Mentos 30 Cadera Grave
+an_paciente 3 Mentos 30 Cadera Grave
+info_paciente 1
+siguiente
+hay_pacientes
+elimina 1
+elimina 2
+elimina 3
+hay_pacientes
