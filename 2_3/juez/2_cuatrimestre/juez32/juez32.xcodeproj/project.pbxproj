@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56A51443228A0F9800507742 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A51442228A0F9800507742 /* main.cpp */; };
+		5652E2E9229F43C80028E68E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E2E8229F43C80028E68E /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		56A5143D228A0F9800507742 /* CopyFiles */ = {
+		5652E2E3229F43C80028E68E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,16 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5652E2F1229F50BB0028E68E /* ipud_ye.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ipud_ye.h; sourceTree = "<group>"; };
-		56A5143F228A0F9800507742 /* juez38 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = juez38; sourceTree = BUILT_PRODUCTS_DIR; };
-		56A51442228A0F9800507742 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		56A51449228A0F9F00507742 /* prob-38.iPUd.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-38.iPUd.pdf"; sourceTree = "<group>"; };
-		56A5144A228A0FAB00507742 /* casos */ = {isa = PBXFileReference; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
-		56FB6A2B229DBFCD0031B535 /* iPud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iPud.h; sourceTree = "<group>"; };
+		5652E2E5229F43C80028E68E /* juez32 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = juez32; sourceTree = BUILT_PRODUCTS_DIR; };
+		5652E2E8229F43C80028E68E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5652E2EF229F43FE0028E68E /* casos */ = {isa = PBXFileReference; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
+		5652E2F0229F44170028E68E /* prob-32.EligDep.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-32.EligDep.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		56A5143C228A0F9800507742 /* Frameworks */ = {
+		5652E2E2229F43C80028E68E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,98 +40,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		56A51436228A0F9800507742 = {
+		5652E2DC229F43C80028E68E = {
 			isa = PBXGroup;
 			children = (
-				56A51441228A0F9800507742 /* juez38 */,
-				56A51440228A0F9800507742 /* Products */,
+				5652E2E7229F43C80028E68E /* juez32 */,
+				5652E2E6229F43C80028E68E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		56A51440228A0F9800507742 /* Products */ = {
+		5652E2E6229F43C80028E68E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				56A5143F228A0F9800507742 /* juez38 */,
+				5652E2E5229F43C80028E68E /* juez32 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		56A51441228A0F9800507742 /* juez38 */ = {
+		5652E2E7229F43C80028E68E /* juez32 */ = {
 			isa = PBXGroup;
 			children = (
-				56A51442228A0F9800507742 /* main.cpp */,
-				56A5144A228A0FAB00507742 /* casos */,
-				56FB6A2B229DBFCD0031B535 /* iPud.h */,
-				5652E2F1229F50BB0028E68E /* ipud_ye.h */,
-				56A51449228A0F9F00507742 /* prob-38.iPUd.pdf */,
+				5652E2E8229F43C80028E68E /* main.cpp */,
+				5652E2EF229F43FE0028E68E /* casos */,
+				5652E2F0229F44170028E68E /* prob-32.EligDep.pdf */,
 			);
-			path = juez38;
+			path = juez32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		56A5143E228A0F9800507742 /* juez38 */ = {
+		5652E2E4229F43C80028E68E /* juez32 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56A51446228A0F9800507742 /* Build configuration list for PBXNativeTarget "juez38" */;
+			buildConfigurationList = 5652E2EC229F43C80028E68E /* Build configuration list for PBXNativeTarget "juez32" */;
 			buildPhases = (
-				56A5143B228A0F9800507742 /* Sources */,
-				56A5143C228A0F9800507742 /* Frameworks */,
-				56A5143D228A0F9800507742 /* CopyFiles */,
+				5652E2E1229F43C80028E68E /* Sources */,
+				5652E2E2229F43C80028E68E /* Frameworks */,
+				5652E2E3229F43C80028E68E /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = juez38;
-			productName = juez38;
-			productReference = 56A5143F228A0F9800507742 /* juez38 */;
+			name = juez32;
+			productName = juez32;
+			productReference = 5652E2E5229F43C80028E68E /* juez32 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		56A51437228A0F9800507742 /* Project object */ = {
+		5652E2DD229F43C80028E68E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = yhondri;
 				TargetAttributes = {
-					56A5143E228A0F9800507742 = {
+					5652E2E4229F43C80028E68E = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 56A5143A228A0F9800507742 /* Build configuration list for PBXProject "juez38" */;
+			buildConfigurationList = 5652E2E0229F43C80028E68E /* Build configuration list for PBXProject "juez32" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 56A51436228A0F9800507742;
-			productRefGroup = 56A51440228A0F9800507742 /* Products */;
+			mainGroup = 5652E2DC229F43C80028E68E;
+			productRefGroup = 5652E2E6229F43C80028E68E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				56A5143E228A0F9800507742 /* juez38 */,
+				5652E2E4229F43C80028E68E /* juez32 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		56A5143B228A0F9800507742 /* Sources */ = {
+		5652E2E1229F43C80028E68E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56A51443228A0F9800507742 /* main.cpp in Sources */,
+				5652E2E9229F43C80028E68E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		56A51444228A0F9800507742 /* Debug */ = {
+		5652E2EA229F43C80028E68E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -192,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		56A51445228A0F9800507742 /* Release */ = {
+		5652E2EB229F43C80028E68E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,7 +240,7 @@
 			};
 			name = Release;
 		};
-		56A51447228A0F9800507742 /* Debug */ = {
+		5652E2ED229F43C80028E68E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -253,7 +249,7 @@
 			};
 			name = Debug;
 		};
-		56A51448228A0F9800507742 /* Release */ = {
+		5652E2EE229F43C80028E68E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -265,25 +261,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		56A5143A228A0F9800507742 /* Build configuration list for PBXProject "juez38" */ = {
+		5652E2E0229F43C80028E68E /* Build configuration list for PBXProject "juez32" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56A51444228A0F9800507742 /* Debug */,
-				56A51445228A0F9800507742 /* Release */,
+				5652E2EA229F43C80028E68E /* Debug */,
+				5652E2EB229F43C80028E68E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56A51446228A0F9800507742 /* Build configuration list for PBXNativeTarget "juez38" */ = {
+		5652E2EC229F43C80028E68E /* Build configuration list for PBXNativeTarget "juez32" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56A51447228A0F9800507742 /* Debug */,
-				56A51448228A0F9800507742 /* Release */,
+				5652E2ED229F43C80028E68E /* Debug */,
+				5652E2EE229F43C80028E68E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 56A51437228A0F9800507742 /* Project object */;
+	rootObject = 5652E2DD229F43C80028E68E /* Project object */;
 }

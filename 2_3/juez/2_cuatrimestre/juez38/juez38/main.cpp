@@ -12,8 +12,6 @@
 #include <unordered_map>
 #include <list>
 #include <vector>
-#include "iPud.h"
-
 
 using namespace std;
 
@@ -26,7 +24,7 @@ public:
     int duracion;
     list<cancionId>:: iterator itPlaylist;
     list<cancionId>:: iterator itRecientes;
-
+    
     cancionInfo(string n, string a, int d, list<cancionId>:: iterator itP,
                 list<cancionId>:: iterator itR) : nombre(n), artista(a),
     duracion(d), itPlaylist(itP), itRecientes(itR) {}
@@ -39,9 +37,11 @@ private:
     unordered_map<cancionId, cancionInfo> biblioteca;
     list<cancionId> playlist;
     list<cancionId> recientes;
-    int tiempoTotalPlaylist;
+    int tiempoTotalPlaylist = 0;
     
 public:
+    iPud2() {};
+
     void addSong(string cancion, string artista, int duracion) {
         if (biblioteca.count(cancion) > 0) {
             throw domain_error("ERROR addSong");
@@ -55,60 +55,72 @@ public:
             throw domain_error("ERROR addToPlaylist");
         }
         
-        list<cancionId>::iterator itEnd = playlist.end();
-        
         //La canción no está en la play list
-        if(biblioteca[cancion].itPlaylist == itEnd) {
+        if(biblioteca[cancion].itPlaylist == playlist.end()) {
             biblioteca[cancion].itPlaylist = playlist.insert(playlist.end(), cancion);
             
             tiempoTotalPlaylist += biblioteca[cancion].duracion;
         }
     }
     
-    pair<bool, string> current() {
-        if (playlist.size() == 0) {
-           return make_pair(false, "No hay canciones en la lista");
+    string current() {
+        if (playlist.empty()) {
+            throw domain_error("ERROR current");
         }
         
-        return make_pair(true, playlist.front());
+        return playlist.front();
     }
     
-    void play() {
-        if (playlist.size() > 0) {
-            string cancion = playlist.front();
-            playlist.pop_front();
-            
-           tiempoTotalPlaylist -= biblioteca[cancion].duracion;
-            
-            if (biblioteca[cancion].itRecientes != recientes.end()) {
-                recientes.erase(biblioteca[cancion].itRecientes);
-            }
-            
-            biblioteca[cancion].itRecientes = recientes.insert(recientes.begin(), cancion);
-            //Sacamos la canción de la playList.
-            biblioteca[cancion].itPlaylist = playlist.end();
+    string play() {
+        if (playlist.empty()) {
+            throw domain_error("No hay canciones en la lista");
         }
+        string cancion = playlist.front();
+        playlist.pop_front();
+        biblioteca[cancion].itPlaylist = playlist.end();
+
+        if (biblioteca[cancion].itRecientes == recientes.end()) {
+            //no habia reproducido nunca
+            biblioteca[cancion].itRecientes = recientes.insert(recientes.begin(), cancion);
+        }
+        else if (biblioteca[cancion].itRecientes != recientes.end()) {
+            recientes.erase(biblioteca[cancion].itRecientes);
+            biblioteca[cancion].itRecientes = recientes.insert(recientes.begin(), cancion);
+        }
+        
+        tiempoTotalPlaylist -= biblioteca[cancion].duracion;
+        
+        return cancion;
     }
     
     int totalTime() {
-        return tiempoTotalPlaylist;
+        if (playlist.empty()){
+            return 0;
+        }
+        else{
+            return tiempoTotalPlaylist;
+        }
     }
     
-    list<cancionId> recent(int n) {
-        list<cancionId> result;
-        
-        int i = 0;
-        for (auto it = recientes.begin(); it != recientes.end() && i < n; ++it, i++) {
-            result.push_back(*it);
+    list<cancionId> recent(int &n) {
+        if (recientes.empty()) {
+            throw domain_error("No hay canciones recientes");
         }
-        
-        return result;
+        list<string> lista;
+
+        auto it = recientes.begin();
+        //int k = min(n, (int)recientes.size());
+        n = min(n, (int)recientes.size());
+        for (int i = 0; i < n; i++)
+        {
+            lista.push_back(it->data());
+            it++;
+        }
+        return lista;
     }
     
     void deleteSong(string cancion) {
-        if (biblioteca.count(cancion) == 0) {
-            return;
-        }
+        if (biblioteca.count(cancion) > 0) {
         
         if (!recientes.empty() && biblioteca[cancion].itRecientes != recientes.end()) {
             recientes.erase(biblioteca[cancion].itRecientes);
@@ -119,82 +131,14 @@ public:
             tiempoTotalPlaylist -= biblioteca[cancion].duracion;
         }
         
-      
+        
         biblioteca.erase(cancion);
+            
+        }
     }
 };
 
 bool resuelveCaso();
-
-
-
-// resuelve un caso de prueba, leyendo de la entrada la
-// configuración, y escribiendo la respuesta
-bool resuelveCaso2() {
-    string orden, cancion, artista;
-    int duracion, n;
-    iPud mp3;
-    
-    cin >> orden;
-    
-    if (!std::cin)  // fin de la entrada
-        return false;
-    
-    while (orden != "FIN"){
-        try{
-            if (orden == "addSong"){
-                cin >> cancion >> artista >> duracion;
-                mp3.addCancion(cancion, artista, duracion);
-            }
-            else if (orden == "addToPlaylist"){
-                cin >> cancion;
-                mp3.addToPlaylist(cancion);
-            }
-            else if (orden == "play"){
-                cancion = mp3.play();
-                if (cancion != "ERROR"){
-                    cout << "Sonando " << cancion << endl;
-                }
-                else{
-                    cout << "No hay canciones en la lista" << endl;
-                }
-            }
-            else if (orden == "totalTime"){
-                cout << "Tiempo total " << mp3.totalTime() << endl;
-            }
-            else if (orden == "deleteSong"){
-                cin >> cancion;
-                mp3.deleteSong(cancion);
-            }
-            else if (orden == "current"){
-                mp3.current();
-            }
-            else if (orden == "recent"){
-                cin >> n;
-                list<string> lista = mp3.recent(n);
-                if (lista.empty()){
-                    cout << "No hay canciones recientes" << endl;
-                }
-                else{
-                    cout << "Las " << n << " mas recientes" << endl;
-                    for (auto const &i : lista){
-                        cout << "    " << i << endl;
-                    }
-                }
-            }
-            
-            cin >> orden;
-        }
-        
-        catch (domain_error e){
-            cout << e.what() << endl;
-            cin >> orden;
-        }
-    }
-    cout << "----" << endl;
-    
-    return true;
-}
 
 int main(int argc, const char * argv[]) {
     //            ajustes para que cin extraiga directamente de un fichero
@@ -205,7 +149,7 @@ int main(int argc, const char * argv[]) {
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     
-    while (resuelveCaso2());
+    while (resuelveCaso());
     
 #ifndef DOMJUDGE
     cin.rdbuf(cinbuf);
@@ -215,59 +159,55 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
+
 bool resuelveCaso() {
-    std::string orden, cancionId, artista;
-    int duracion, n;
+    std::string orden, s,a;
+    int dur;
     std::cin >> orden;
     if (!std::cin)
         return false;
     
-    iPud2 ipod;
+    iPud2 mIpud;
     
     while (orden != "FIN") {
         try {
             if (orden == "addSong") {
-                cin >> cancionId >> artista >> duracion;
-                ipod.addSong(cancionId, artista, duracion);
-            } else if (orden == "addToPlaylist") {
-                cin >> cancionId;
-                ipod.addToPlaylist(cancionId);
-            } else if (orden == "play") {
-                pair<bool, string> result = ipod.current();
-                if (result.first) {
-                    cout << "Sonando " << result.second << "\n";
-                    ipod.play();
-                } else {
-                    cout << result.second << "\n";
-                }
-            } else if (orden == "totalTime") {
-                int result = ipod.totalTime();
-                cout << "Tiempo total " << result << endl;
-            } else if (orden == "current") {
-                pair<bool, string> result = ipod.current();
-                if (!result.first) {
-                    cout << "ERROR current\n";
-                }
-            } else if (orden == "recent") {
-                cin >> n;
-                list<string> result = ipod.recent(n);
-                
-                if (result.size() > 0) {
-                    cout << "Las " << result.size() << " mas recientes" << endl;
-                    for (auto titulo : result) {
-                        cout << "    " << titulo << endl;
-                    }
-                } else {
-                    cout << "No hay canciones recientes" << endl;
-                }
-            } else if (orden == "deleteSong") {
-                cin >> cancionId;
-                ipod.deleteSong(cancionId);
+                cin >> s >> a >> dur;
+                mIpud.addSong(s,a,dur);
             }
-//            else {
-//                cout << "OPERACION DESCONOCIDA: " << orden << "\n";
-//            }
-        } catch (std::domain_error e) {
+            else if (orden == "addToPlaylist") {
+                cin >> s;
+                mIpud.addToPlaylist(s);
+            }
+            else if (orden == "current") {
+                mIpud.current();
+                //cout << mIpud.current() << "\n";
+            }
+            else if (orden == "play") {
+                cout << "Sonando " << mIpud.play() << '\n';
+            }
+            else if (orden == "totalTime") {
+                cout << "Tiempo total " << mIpud.totalTime() << '\n';
+            }
+            else if (orden == "recent") {
+                int r;
+                cin >> r;
+                auto const& lista = mIpud.recent(r);
+                cout << "Las " << r << " mas recientes\n";
+                for (auto const& cancion : lista)
+                    cout << "    " << cancion << "\n";
+            }
+            else if (orden == "deleteSong") {
+                cin >> s;
+                mIpud.deleteSong(s);
+            }
+            else
+                cout << "OPERACION DESCONOCIDA\n";
+        }
+        catch (std::domain_error e) {
+            std::cout << e.what() << '\n';
+        }
+        catch (std::invalid_argument e) {
             std::cout << e.what() << '\n';
         }
         std::cin >> orden;
