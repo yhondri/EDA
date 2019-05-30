@@ -65,6 +65,8 @@ class bookShop {
     map<int, list<bookId>> ventasMap;
     
     public:
+    bookShop() {};
+
     void nuevoLibro(int ejemplares, bookId libro) {
         if (booksMap.count(libro) == 0) {
             list<bookId>:: iterator insertResult = ventasMap[0].insert(ventasMap[0].end(), libro);
