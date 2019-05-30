@@ -27,6 +27,7 @@
 		5622B95022A05A3C00275424 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5622B95722A05A4B00275424 /* bintree_eda.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bintree_eda.h; sourceTree = "<group>"; };
 		5622B95822A05A4B00275424 /* casos */ = {isa = PBXFileReference; lastKnownFileType = text; path = casos; sourceTree = "<group>"; };
+		5622B95922A0657900275424 /* prob-EvCont. 2F.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob-EvCont. 2F.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 			children = (
 				5622B95022A05A3C00275424 /* main.cpp */,
 				5622B95722A05A4B00275424 /* bintree_eda.h */,
+				5622B95922A0657900275424 /* prob-EvCont. 2F.pdf */,
 				5622B95822A05A4B00275424 /* casos */,
 			);
 			path = evc_2f;
