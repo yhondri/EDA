@@ -12,6 +12,8 @@
 
 using namespace std;
 
+using puntos = int;
+
 int calcularAltSubarbolMayor(bintree<char> const &arbol, int &alturaTotal) {
     if (arbol.empty()) {
         alturaTotal = 0;

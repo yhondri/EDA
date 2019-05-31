@@ -69,7 +69,8 @@ class bookShop {
 
     void nuevoLibro(int ejemplares, bookId libro) {
         if (booksMap.count(libro) == 0) {
-            list<bookId>:: iterator insertResult = ventasMap[0].insert(ventasMap[0].end(), libro);
+            list<bookId> &lista = ventasMap[0];
+            list<bookId>:: iterator insertResult = lista.insert(lista.end(), libro);
             booksMap[libro] = bookInfo(libro, ejemplares, insertResult);
         } else {
             int totalEjemplares = ejemplares + booksMap[libro].getEjemplares();
@@ -106,6 +107,7 @@ class bookShop {
         if (booksMap.count(libro) == 0) {
             return;
         }
+        
         
         ventasMap[booksMap[libro].getEjemplaresVendidos()].erase(booksMap[libro].getItLista());
         booksMap.erase(libro);
