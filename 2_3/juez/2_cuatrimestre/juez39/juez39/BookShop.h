@@ -31,7 +31,7 @@ struct bookInfo {
     public:
     bookInfo() = default;
     
-    bookInfo(bookId newId, int n,  list<string>:: iterator mItBook) : mBookId(newId), ejemplares(n), numEjemplaresVendidos(0), itBook(mItBook) {
+    bookInfo(bookId newId, int n) : mBookId(newId), ejemplares(n), numEjemplaresVendidos(0) {
     }
     
     int getEjemplares() const {
@@ -62,19 +62,21 @@ struct bookInfo {
 class bookShop {
     private:
     unordered_map<bookId, bookInfo> booksMap;
-    map<int, list<bookId>> ventasMap;
+//    map<int, list<bookId>> ventasMap;
+    list<bookId> ventasList;
     
     public:
     bookShop() {};
 
     void nuevoLibro(int ejemplares, bookId libro) {
         if (booksMap.count(libro) == 0) {
-            list<bookId> &lista = ventasMap[0];
-            list<bookId>:: iterator insertResult = lista.insert(lista.end(), libro);
-            booksMap[libro] = bookInfo(libro, ejemplares, insertResult);
+//            list<bookId> &lista = ventasMap[0];
+//            list<bookId>:: iterator insertResult = ventasList.insert(ventasList.begin(), libro);
+            booksMap[libro] = bookInfo(libro, ejemplares);
         } else {
-            int totalEjemplares = ejemplares + booksMap[libro].getEjemplares();
-            booksMap[libro].setEjemplares(totalEjemplares);
+            bookInfo &mBook = booksMap[libro];
+            int totalEjemplares = ejemplares + mBook.getEjemplares();
+            mBook.setEjemplares(totalEjemplares);
         }
     }
     
@@ -87,16 +89,28 @@ class bookShop {
             throw out_of_range("No hay ejemplares");
         }
         
-        int totalEjemplares = booksMap[libro].getEjemplares() - 1;
-        booksMap[libro].setEjemplares(totalEjemplares);
+        bookInfo &book = booksMap[libro];
         
-        list<bookId> &listaPuntosVendidosAntes = ventasMap[booksMap[libro].getEjemplaresVendidos()];
-        listaPuntosVendidosAntes.erase(booksMap[libro].getItLista());
+        int totalEjemplares = book.getEjemplares() - 1;
+        book.setEjemplares(totalEjemplares);
         
-        booksMap[libro].annadirEjemplarVendido();
+//        list<bookId> &listaPuntosVendidosAntes = ventasMap[book.getEjemplaresVendidos()];
+//        listaPuntosVendidosAntes.erase(book.getItLista());
         
-        list<bookId> &listaNuevosPuntos = ventasMap[booksMap[libro].getEjemplaresVendidos()];
-        booksMap[libro].setItLista(listaNuevosPuntos.insert(listaNuevosPuntos.begin(), libro));
+
+        list<bookId>:: iterator nuevaPos;
+        if (book.getEjemplaresVendidos() > 0) {
+            nuevaPos = next(book.getItLista(), 1);
+            ventasList.erase(book.getItLista());
+        } else {
+            nuevaPos = next(ventasList.begin(), 1);
+        }
+
+        book.annadirEjemplarVendido();
+
+//        list<bookId> &listaNuevosPuntos = ventasMap[book.getEjemplaresVendidos()];
+        
+        book.setItLista(ventasList.insert(nuevaPos, libro));
     }
     
     bool estaLibro(bookId libro) {
@@ -108,8 +122,12 @@ class bookShop {
             return;
         }
         
+        bookInfo &book = booksMap[libro];
         
-        ventasMap[booksMap[libro].getEjemplaresVendidos()].erase(booksMap[libro].getItLista());
+        if (book.getEjemplaresVendidos() > 0) {
+            ventasList.erase(book.getItLista());
+        }
+        
         booksMap.erase(libro);
     }
     
@@ -121,20 +139,20 @@ class bookShop {
         return booksMap[libro].getEjemplares();
     }
     
-    list<bookId> top10() {
-        int totalLibros = 0;
-        list<bookId> result;
+    list<bookId> top10() const {
+//        int totalLibros = 0;
+//        list<bookId> result;
+//
+//        for(auto it = ventasMap.rbegin(); it != ventasMap.rend() && totalLibros < 10; ++it) {
+//            if (it->first > 0) {
+//                for(auto value : it->second) {
+//                    result.push_back(value);
+//                    totalLibros++;
+//                }
+//            }
+//        }
         
-        for(auto it = ventasMap.rbegin(); it != ventasMap.rend() && totalLibros < 10; ++it) {
-            if (it->first > 0) {
-                for(auto value : it->second) {
-                    result.push_back(value);
-                    totalLibros++;
-                }
-            }
-        }
-        
-        return result;
+        return ventasList;
     }
     
 };

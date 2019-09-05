@@ -101,9 +101,14 @@ bool resuelveCaso() {
                     cout << "No existe el libro " << titulo << " en el sistema" << "\n---\n";
                 }
             } else if(orden == "top10") {
-                for(auto libro : mBookShop.top10()) {
-                    cout << libro << "\n" ;
+                list<bookId> booksList = mBookShop.top10();
+                int i = 0;
+                for (auto it = booksList.rbegin(); it != booksList.rend() && i < 10; ++it, i++) {
+                    cout << (*it) << "\n" ;
                 }
+//                for(auto libro : mBookShop.top10()) {
+//                    cout << libro << "\n" ;
+//                }
                 
                 cout << "---\n";
             }
